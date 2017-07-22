@@ -1,0 +1,58 @@
+
+§
+src/recording.protoactivitylogger"j
+TimelineCreate
+
+timelineId (	R
+timelineId
+sourceId (	RsourceId
+	publicKey (	R	publicKey"Õ
+Access
+
+timelineId (	R
+timelineId
+sourceId (RsourceId
+	publicKey (	R	publicKey1
+state (2.activitylogger.Access.TypeRstate">
+Type
+
+REVOKE
+READONLY
+	WRITEONLY
+	READWRITE"Ý
+Interaction
+
+timelineId (	R
+timelineId
+sourceId (	RsourceId
+	timeStart (R	timeStart
+timeEnd (RtimeEnd
+window (	Rwindow
+
+keypresses (R
+keypresses"
+mousepresses (Rmousepresses"œ
+WindowActivity
+
+timelineId (	R
+timelineId
+sourceId (	RsourceId
+	timeStart (R	timeStart
+timeEnd (RtimeEnd
+titles (	Rtitles"š
+FolderActivity
+
+timelineId (	R
+timelineId
+sourceId (	RsourceId
+	timeStart (R	timeStart
+timeEnd (RtimeEnd
+paths (	Rpaths"Ÿ
+Meeting
+
+timelineId (	R
+timelineId
+sourceId (	RsourceId
+	timeStart (R	timeStart
+timeEnd (RtimeEnd 
+description (	Rdescription

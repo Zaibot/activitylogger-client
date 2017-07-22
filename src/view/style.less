@@ -1,0 +1,23 @@
+.list {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin: 24px 0;
+}
+
+.item {
+  display: inline;
+  flex: 0 0 auto;
+
+  color: rgba(0,0,0,0.4);
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+.item:hover {
+  color: rgba(0,0,0,0.6);
+}
+
+.item.active {
+  color: rgba(0,0,0,0.8);
+}
