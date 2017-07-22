@@ -1,0 +1,103 @@
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-16px);
+    overflow: hidden;
+  }
+  99.999% {
+    opacity: 1;
+    transform: translateY(0);
+    overflow: hidden;
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    overflow: auto;
+  }
+}
+
+html {
+  min-height: 80vh;
+  background-color: #fff;
+  background-image: linear-gradient(180deg, #f0f0f0, #fff);
+  // background-size: cover;
+  // background-position: fixed;
+  background-repeat: no-repeat;
+  animation: fadeIn 0.3s;
+  // height: 100vh;
+}
+h1 {
+  font: 100 24px/1em 'Segoe UI';
+  margin: 0;
+  color: rgba(0,0,0,0.6);
+}
+h2 {
+  font: 600 12px/1.5em 'Segoe UI';
+  margin: 0.5em 0;
+  color: rgba(0,0,0,0.8);
+}
+label {
+  font: 600 12px/1.5em 'Segoe UI';
+  color: rgba(0,0,0,0.8);
+}
+input {
+  color: rgba(0,0,0,1.0);
+  border-bottom: 1px solid rgba(0,0,0,0.3);
+  outline: 0;
+}
+textarea {
+  color: rgba(0,0,0,1.0);
+  border-right: 1px solid rgba(0,0,0,0.3);
+  border-bottom: 1px solid rgba(0,0,0,0.3);
+  outline: 0;
+}
+input:focus, textarea:focus {
+  border-color: rgba(0,0,255,0.6);
+}
+button {
+  padding: 0.2em 1.0em;
+  background: rgba(0,0,255,0.1);
+  cursor: pointer;
+  outline: 0;
+}
+button:hover {
+  background: rgba(0,0,255,0.2);
+}
+
+.app {
+  margin: 48px;
+  font: 300 16px/1.5em 'Segoe UI';
+  color: rgba(0,0,0,0.8);
+}
+.header {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+}
+.logo {
+  flex: 1 1 auto;
+}
+.logo.error h1 {
+}
+.logo.busy h1 {
+}
+.logo.offline h1 {
+}
+.sysaction {
+  flex: 0 0 auto;
+  // vertical-align: text-bottom;
+}
+.stats-detail {
+  font-size: 14px;
+}
+.buffer-item {
+  display: flex;
+  flex-direction: row;
+}
+.buffer-field {
+  flex: 1 1 25%;
+}
+.buffer-field.buffer-keypresses,
+.buffer-field.buffer-mousepresses {
+  flex: 1 1 12.5%;
+}

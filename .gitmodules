@@ -1,0 +1,3 @@
+[submodule "protocol/src"]
+	path = protocol/src
+	url = https://github.com/Zaibot/activitylogger-protocol.git
