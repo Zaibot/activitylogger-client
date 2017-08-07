@@ -4,7 +4,7 @@ import selectors from '../store/selectors';
 import * as actions from '../actions';
 import { isType, Action } from '../actions';
 import uuid from 'uuid';
-import Meeting from './Meeting';
+import { Meeting } from './Meeting';
 import Database, { IBufferItem } from './database';
 
 export default function* () {

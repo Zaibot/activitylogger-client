@@ -3,7 +3,7 @@ import { PureConnect } from 'react-redux-pure';
 import React from 'react';
 import uuid from 'uuid';
 
-import { StatusSent } from '../buffer/Status';
+import { Status } from '../buffer';
 import * as actions from '../actions';
 import CounterFolder from './CounterFolder';
 import CounterIdleTime from './CounterIdleTime';

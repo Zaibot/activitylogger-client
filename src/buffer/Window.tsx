@@ -1,6 +1,6 @@
 import { Status } from './Status';
 
-class Window {
+export class Window {
   public constructor(
     public readonly status: Status,
     public readonly creationTime: number,
@@ -28,4 +28,3 @@ class Window {
     }
   }
 }
-export default Window;

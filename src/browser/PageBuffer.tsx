@@ -4,15 +4,11 @@ import { PureConnect } from 'react-redux-pure';
 import { Status, StatusWaiting, StatusSending, StatusSent, StatusError } from '../buffer/Status';
 import * as actions from '../actions';
 import cx from './style.less';
-import Folder from '../buffer/Folder';
+import { Folder, Interaction, Window, Meeting, TimelineCreate } from '../buffer';
 import Icon from '../icon';
-import Interaction from '../buffer/Interaction';
 import React from 'react';
 import selectors from '../store/selectors';
 import State from '../store/state';
-import Window from '../buffer/Window';
-import Meeting from '../buffer/Meeting';
-import TimelineCreate from '../buffer/TimelineCreate';
 
 const queueItems = createSelector(
   (state: State) => state.buffer.tasks,

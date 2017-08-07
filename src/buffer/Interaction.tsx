@@ -1,6 +1,6 @@
 import { Status } from './Status';
 
-class Interaction {
+export class Interaction {
   public constructor(
     public readonly status: Status,
     public readonly creationTime: number,
@@ -31,4 +31,3 @@ class Interaction {
     }
   }
 }
-export default Interaction;

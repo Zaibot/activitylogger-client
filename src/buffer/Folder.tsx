@@ -1,6 +1,6 @@
 import { Status } from './Status';
 
-class Folder {
+export class Folder {
   public constructor(
     public readonly status: Status,
     public readonly creationTime: number,
@@ -10,4 +10,3 @@ class Folder {
     public readonly folders: string[],
   ) { }
 }
-export default Folder;

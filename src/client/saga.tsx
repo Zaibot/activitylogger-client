@@ -8,15 +8,12 @@ import selectors from '../store/selectors';
 import { isType, Action } from '../actions';
 import fetch from 'node-fetch';
 import { State } from '../buffer/reducer';
-import Window from '../buffer/Window';
-import Folder from '../buffer/Folder';
-import Interaction from '../buffer/Interaction';
-import Meeting from '../buffer/Meeting';
+import { Window, Folder, Interaction, Meeting } from '../buffer';
 import { Report } from "../errors/index";
 
 function* tick(callback: saga.CallEffectFn<any>) {
-  yield saga.fork(function*() {
-    for(;;) {
+  yield saga.fork(function* () {
+    for (; ;) {
       yield saga.take(actions.INTERVAL_TICK.type);
       yield saga.call(callback);
     }

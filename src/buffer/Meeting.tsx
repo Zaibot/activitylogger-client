@@ -1,6 +1,6 @@
 import { Status } from './Status';
 
-class Meeting {
+export class Meeting {
   public constructor(
     public readonly timeStart: number,
     public readonly timeEnd: number,
@@ -8,4 +8,3 @@ class Meeting {
     public readonly description: string,
   ) { }
 }
-export default Meeting;
