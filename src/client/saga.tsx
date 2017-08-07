@@ -76,7 +76,6 @@ function* sync() {
 }
 
 function* postTimelineCreate(id: string, interaction: any) {
-  console.log(`postTimelineCreate`);
   const { timelineId, publicKey } = interaction;
   try {
     yield saga.put(actions.BUFFER_BUSY({ id }));
@@ -105,7 +104,6 @@ function* postTimelineCreate(id: string, interaction: any) {
 }
 
 function* postInteraction(id: string, interaction: Interaction) {
-  console.log(`postInteraction`);
   const { timeStart, timeEnd, keypresses, mousepresses } = interaction;
   try {
     yield saga.put(actions.BUFFER_BUSY({ id }));
@@ -135,7 +133,6 @@ function* postInteraction(id: string, interaction: Interaction) {
 }
 
 function* postWindow(id: string, window: Window) {
-  console.log(`postWindow`);
   const { timeStart, timeEnd, windows: titles } = window;
   try {
     yield saga.put(actions.BUFFER_BUSY({ id }));
@@ -165,7 +162,6 @@ function* postWindow(id: string, window: Window) {
 }
 
 function* postFolder(id: string, window: Folder) {
-  console.log(`postFolder`);
   const { timeStart, timeEnd, folders: paths } = window;
   try {
     yield saga.put(actions.BUFFER_BUSY({ id }));
@@ -195,7 +191,6 @@ function* postFolder(id: string, window: Folder) {
 }
 
 function* postMeeting(id: string, window: Meeting) {
-  console.log(`postMeeting`);
   const { timeStart, timeEnd, title, description } = window;
   try {
     yield saga.put(actions.BUFFER_BUSY({ id }));
