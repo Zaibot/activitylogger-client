@@ -1,11 +1,11 @@
 import * as actions from '../actions';
 import { isType, Action } from '../actions';
-import { Status, StatusWaiting, StatusSent, StatusSending, StatusError } from './Status';
 import { Window } from './Window';
 import { Folder } from './Folder';
 import { Meeting } from './Meeting';
 import { Interaction } from './Interaction';
 import { TimelineCreate } from './TimelineCreate';
+import { Status } from './Status';
 
 export type Task = {
   id: string;

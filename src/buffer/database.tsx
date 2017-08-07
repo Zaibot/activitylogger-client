@@ -2,7 +2,6 @@ import path from 'path';
 import Datastore from 'nedb';
 import { app } from 'electron'
 import { Task } from './reducer';
-import { StatusSent } from './Status';
 
 const intervalCompaction = 60000 * 15;
 

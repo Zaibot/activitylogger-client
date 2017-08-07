@@ -1,10 +1,9 @@
 import { Action, isType } from '../actions';
 import { createSelector } from 'reselect';
 import { PureConnect } from 'react-redux-pure';
-import { Status, StatusWaiting, StatusSending, StatusSent, StatusError } from '../buffer/Status';
 import * as actions from '../actions';
 import cx from './style.less';
-import { Folder, Interaction, Window, Meeting, TimelineCreate } from '../buffer';
+import { Status, Folder, Interaction, Window, Meeting, TimelineCreate } from '../buffer';
 import Icon from '../icon';
 import React from 'react';
 import selectors from '../store/selectors';
@@ -18,18 +17,18 @@ const queueItems = createSelector(
 )
 const queueLength = createSelector(
   queueItems,
-  (combined) => combined.reduce((state, cur) => state + (cur.status !== StatusSent ? 1 : 0), 0)
+  (combined) => combined.reduce((state, cur) => state + (cur.status !== Status.Sent ? 1 : 0), 0)
 )
 const formatter = new Intl.DateTimeFormat([], { hour: 'numeric', hour12: false, minute: 'numeric', second: 'numeric', weekday: 'short' });
 
 const StatusIcon = ({ status }: { status: Status }) => {
-  if (status === StatusWaiting) {
+  if (status === Status.Waiting) {
     return <Icon value={`access_time`} />;
-  } else if (status === StatusSending) {
+  } else if (status === Status.Sending) {
     return <Icon value={`file_upload`} />;
-  } else if (status === StatusSent) {
+  } else if (status === Status.Sent) {
     return <Icon value={`check`} />;
-  } else if (status === StatusError) {
+  } else if (status === Status.Error) {
     return <Icon value={`warning`} />;
   }
 };

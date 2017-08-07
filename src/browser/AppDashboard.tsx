@@ -28,7 +28,7 @@ import WebLink from '../WebLink';
 
 export default PureConnect(`AppDashboard`)(
   (state: State) => ({
-    pendingBuffer: state.buffer.tasks.some((x) => x.status !== StatusSent),
+    pendingBuffer: state.buffer.tasks.some((x) => x.status !== Status.Sent),
     offline: selectors.isDisconnected(state),
     windowTitleLast: selectors.windowTitleLast(state),
   }),
