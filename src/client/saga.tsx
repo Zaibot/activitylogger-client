@@ -12,6 +12,7 @@ import Window from '../buffer/Window';
 import Folder from '../buffer/Folder';
 import Interaction from '../buffer/Interaction';
 import Meeting from '../buffer/Meeting';
+import { Report } from "../errors/index";
 
 function* tick(callback: saga.CallEffectFn<any>) {
   yield saga.fork(function*() {
@@ -38,9 +39,8 @@ function* discover() {
     const logUrl = autoconfig.address.log;
     const aggregatorUrl = autoconfig.address.aggregator;
     yield saga.put(actions.CONNECTION_ONLINE({ dashboardUrl, logUrl, aggregatorUrl }));
-    console.error(`[DISCOVER]`, JSON.stringify(autoconfig));
   } catch (err) {
-    console.error(`[DISCOVER]`, err);
+    Report.error(err);
     yield saga.put(actions.CONNECTION_OFFLINE({}));
   }
 }
