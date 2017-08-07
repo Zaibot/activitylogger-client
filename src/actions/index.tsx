@@ -6,6 +6,7 @@ export { default as BUFFER_BUSY } from './BUFFER_BUSY';
 export { default as BUFFER_ERROR } from './BUFFER_ERROR';
 export { default as BUFFER_QUEUE } from './BUFFER_QUEUE';
 export { default as BUFFER_SUCCESS } from './BUFFER_SUCCESS';
+export { default as BUFFER_CANCEL } from './BUFFER_CANCEL';
 export { default as CHANGED_PRIVATEKEY } from './CHANGED_PRIVATEKEY';
 export { default as CHANGED_PUBLICKEY } from './CHANGED_PUBLICKEY';
 export { default as CHANGED_SERVER } from './CHANGED_SERVER';

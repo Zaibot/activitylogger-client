@@ -22,22 +22,27 @@ const emptyState: State = {
   tasks: [],
 };
 
-const outOfDate = (date: number, a: Task) => a.status === StatusSent && date - a.finishTime > 60000;
+const outOfDate = (date: number, a: Task) => a.status === Status.Sent && date - a.finishTime > 60000;
 
 const reducerTask = (task: Task, action: Action<any>): Task => {
   if (isType(actions.BUFFER_SUCCESS, action)) {
     if (task.id === action.payload.id) {
-      task = { ...task, status: StatusSent, finishTime: action.payload.finishTime };
+      task = { ...task, status: Status.Sent, finishTime: action.payload.finishTime };
     }
   }
   if (isType(actions.BUFFER_ERROR, action)) {
     if (task.id === action.payload.id) {
-      task = { ...task, status: StatusError, finishTime: action.payload.finishTime };
+      task = { ...task, status: Status.Error, finishTime: action.payload.finishTime };
     }
   }
   if (isType(actions.BUFFER_BUSY, action)) {
     if (task.id === action.payload.id) {
-      task = { ...task, status: StatusSending };
+      task = { ...task, status: Status.Sending };
+    }
+  }
+  if (isType(actions.BUFFER_CANCEL, action)) {
+    if (task.id === action.payload.id) {
+      task = { ...task, status: Status.Cancelled, finishTime: action.payload.time };
     }
   }
   return task;
@@ -48,13 +53,13 @@ export default (state = emptyState, action: Action<any>) => {
     const id = action.payload.id;
     const type = action.payload.type;
     const creationTime = action.payload.creationTime;
-    const status = StatusWaiting;
+    const status = Status.Waiting;
     const finishTime = 0;
     const data = action.payload.data;
     const tasks = [...state.tasks, { id, type, creationTime, status, finishTime, data }];
     state = { tasks };
   }
-  if (isType(actions.BUFFER_SUCCESS, action) || isType(actions.BUFFER_ERROR, action) || isType(actions.BUFFER_BUSY, action)) {
+  if (isType(actions.BUFFER_SUCCESS, action) || isType(actions.BUFFER_ERROR, action) || isType(actions.BUFFER_BUSY, action) || isType(actions.BUFFER_CANCEL, action)) {
     const tasks = state.tasks.map((task) => reducerTask(task, action));
     state = { tasks };
   }

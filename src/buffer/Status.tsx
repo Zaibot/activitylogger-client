@@ -3,4 +3,5 @@ export enum Status {
   Sending = 'sending',
   Error = 'error',
   Sent = 'sent',
+  Cancelled = 'cancelled',
 }

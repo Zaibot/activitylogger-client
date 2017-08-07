@@ -13,7 +13,7 @@ export default function* () {
   yield takeEvery([actions.CHANGED_TIMELINE.type], timelineCreate);
   yield takeEvery([actions.USERRETURNED_COMMIT.type], meeting);
   yield takeEvery([actions.INVITE_COMMIT.type], invite);
-  yield takeEvery([actions.BUFFER_QUEUE.type, actions.BUFFER_SUCCESS.type], persistBufferItem);
+  yield takeEvery([actions.BUFFER_QUEUE.type, actions.BUFFER_CANCEL.type, actions.BUFFER_SUCCESS.type], persistBufferItem);
   yield saga.fork(cleanup);
 }
 
@@ -27,6 +27,9 @@ function* reloadBufferItem() {
 function* persistBufferItem(action: Action<any>) {
   if (isType(actions.BUFFER_QUEUE, action)) {
     yield Database.save(action.payload);
+  }
+  if (isType(actions.BUFFER_CANCEL, action)) {
+    yield Database.remove(action.payload);
   }
   if (isType(actions.BUFFER_SUCCESS, action)) {
     yield Database.remove(action.payload);
