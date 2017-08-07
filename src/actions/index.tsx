@@ -2,6 +2,12 @@ import creator from './creator';
 export { Action, isType, isAnyType } from './creator';
 export default creator;
 
+export { default as AUTOUPDATE_CHECKING } from './AUTOUPDATE_CHECKING';
+export { default as AUTOUPDATE_ERROR } from './AUTOUPDATE_ERROR';
+export { default as AUTOUPDATE_INSTALL } from './AUTOUPDATE_INSTALL';
+export { default as AUTOUPDATE_LATER } from './AUTOUPDATE_LATER';
+export { default as AUTOUPDATE_READY } from './AUTOUPDATE_READY';
+export { default as AUTOUPDATE_SUCCESS } from './AUTOUPDATE_SUCCESS';
 export { default as BUFFER_BUSY } from './BUFFER_BUSY';
 export { default as BUFFER_ERROR } from './BUFFER_ERROR';
 export { default as BUFFER_QUEUE } from './BUFFER_QUEUE';

@@ -10,6 +10,7 @@ import {
   triggerAlias,
   replayActionMain,
 } from 'electron-redux';
+import { AutoUpdateMiddleware } from "../autoupdate";
 
 export default () => {
   const saga = SagaMiddleware();
@@ -19,7 +20,11 @@ export default () => {
     // }
     return next(action);
   };
-  const store = createStore<State>(combineReducers(reducers), process.env.NODE_ENV === 'production' ? applyMiddleware(saga, forwardToRenderer) : applyMiddleware(debug, saga, forwardToRenderer));
+  const store = createStore<State>(
+    combineReducers(reducers),
+    process.env.NODE_ENV === 'production'
+      ? applyMiddleware(saga, forwardToRenderer, AutoUpdateMiddleware)
+      : applyMiddleware(debug, saga, forwardToRenderer));
   saga.run(rootSaga);
   replayActionMain(store);
   Report.on('report', ({ time, error: { message } }) => {

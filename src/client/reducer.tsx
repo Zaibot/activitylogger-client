@@ -7,6 +7,7 @@ export type State = {
   error: string;
   dashboardUrl: string;
   aggregatorUrl: string;
+  electronUrl: string;
   logUrl: string;
 };
 const emptyState: State = {
@@ -15,6 +16,7 @@ const emptyState: State = {
   error: null,
   dashboardUrl: null,
   aggregatorUrl: null,
+  electronUrl: null,
   logUrl: null,
 };
 
@@ -26,6 +28,7 @@ export default (state = emptyState, action: Action<any>) => {
       dashboardUrl: null,
       aggregatorUrl: null,
       logUrl: null,
+      electronUrl: null,
     };
   }
   if (isType(actions.CONNECTION_BUSY, action)) {
@@ -35,16 +38,18 @@ export default (state = emptyState, action: Action<any>) => {
       dashboardUrl: null,
       aggregatorUrl: null,
       logUrl: null,
+      electronUrl: null,
     };
   }
   if (isType(actions.CONNECTION_ONLINE, action)) {
-    const { dashboardUrl, aggregatorUrl, logUrl } = action.payload
+    const { dashboardUrl, aggregatorUrl, logUrl, electronUrl } = action.payload
     return {
       busy: false,
       online: true,
       dashboardUrl,
       aggregatorUrl,
       logUrl,
+      electronUrl,
     };
   }
   return state;

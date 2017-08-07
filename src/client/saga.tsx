@@ -35,7 +35,8 @@ function* discover() {
     const dashboardUrl = autoconfig.address.dashboard;
     const logUrl = autoconfig.address.log;
     const aggregatorUrl = autoconfig.address.aggregator;
-    yield saga.put(actions.CONNECTION_ONLINE({ dashboardUrl, logUrl, aggregatorUrl }));
+    const electronUrl = autoconfig.address.electron;
+    yield saga.put(actions.CONNECTION_ONLINE({ dashboardUrl, logUrl, aggregatorUrl, electronUrl }));
   } catch (err) {
     Report.error(err);
     yield saga.put(actions.CONNECTION_OFFLINE({}));

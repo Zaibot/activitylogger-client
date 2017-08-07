@@ -1,5 +1,6 @@
 import * as saga from 'redux-saga/effects';
 import activeWindow from '../monitor/window/saga';
+import autoupdate from '../autoupdate/saga';
 import buffer from '../buffer/saga';
 import client from '../client/saga';
 import config from '../config/saga';
@@ -21,4 +22,5 @@ export default function* () {
   yield saga.fork(monitorIdle);
   yield saga.fork(window);
   yield saga.fork(tray);
+  yield saga.fork(autoupdate);
 }
