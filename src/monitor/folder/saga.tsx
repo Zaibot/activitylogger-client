@@ -1,11 +1,13 @@
 import { Action, isType } from '../../actions';
-import { takeEvery, delay, buffers, eventChannel, Task } from 'redux-saga';
+import { delay, buffers, eventChannel, Task } from 'redux-saga';
+import * as safe from '../../helpers';
 import * as actions from '../../actions';
 import * as saga from 'redux-saga/effects';
 import selectors from '../../store/selectors';
 import fs from 'fs';
 import Git from './git';
 import path from 'path';
+import { Report } from '../../errors';
 
 export interface IActiveWindow {
   app: string;
@@ -13,7 +15,7 @@ export interface IActiveWindow {
 }
 
 export default function* () {
-  yield saga.fork(monitorFolders);
+  yield safe.catchForkForever(monitorFolders);
 }
 
 function* monitorFolders() {
@@ -54,6 +56,9 @@ function fsWatchChannel(folder: string) {
       }
     };
     const watcher = fs.watch(folder, options, listener);
+    watcher.on('error', (err: Error) => {
+      Report.error(err);
+    });
     const unsub = () => { watcher.close(); };
     return unsub;
   });
