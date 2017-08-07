@@ -47,3 +47,4 @@ export { default as USERRETURNED_SKIP } from './USERRETURNED_SKIP';
 export { default as USERRETURNED_TITLE_CHANGED } from './USERRETURNED_TITLE_CHANGED';
 export { default as WINDOW_HIDE } from './WINDOW_HIDE';
 export { default as WINDOW_SHOW } from './WINDOW_SHOW';
+export { default as ERROR_APPLICATION } from './ERROR_APPLICATION';
