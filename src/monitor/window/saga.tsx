@@ -1,7 +1,8 @@
 import { Action, isType } from '../../actions';
 import * as actions from '../../actions';
-import { takeEvery, delay } from 'redux-saga';
+import { delay } from 'redux-saga';
 import * as saga from 'redux-saga/effects';
+import { Report } from '../../errors';
 import ActiveWindow from 'active-win';
 
 export interface IActiveWindow {
@@ -22,7 +23,7 @@ function* monitorActiveWindowTitle() {
         last = { app, title };
       }
     } catch (ex) {
-      console.error(`[ActiveWindow]`, ex);
+      Report.error(ex);
     }
     yield delay(250);
   }
