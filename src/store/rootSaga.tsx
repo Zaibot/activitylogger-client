@@ -8,8 +8,9 @@ import keygen from '../keygen/saga';
 import monitorFolder from '../monitor/folder/saga';
 import monitorIdle from '../monitor/idle/saga';
 import window from '../window/saga';
+import { rootSaga as tray } from '../launch/tray';
 
-export default function*() {
+export default function* () {
   yield saga.fork(activeWindow);
   yield saga.fork(buffer);
   yield saga.fork(client);
@@ -19,4 +20,5 @@ export default function*() {
   yield saga.fork(monitorFolder);
   yield saga.fork(monitorIdle);
   yield saga.fork(window);
+  yield saga.fork(tray);
 }

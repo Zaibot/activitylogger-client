@@ -5,13 +5,13 @@
   "main": "dist/app.js",
   "scripts": {
     "start": "electron --debug .",
-    "build": "cross-env NODE_ENV=production npm run compile",
-    "compile": "webpack",
+    "compile": "cross-env NODE_ENV=production webpack",
     "installer": "npm run build && npm run pack",
     "pack": "cross-env NODE_ENV=production electron-builder",
-    "dev": "nodemon -w src -w package.json -w webpack.config.js -e .json,.js,.html,.ts,.tsx,.less -i node_modules -x \"(npm run compile && npm start) || exit 0\"",
+    "dev": "nodemon -w src -w package.json -w webpack.config.js -e .json,.js,.html,.ts,.tsx,.less -i node_modules -x \"(webpack && npm start) || exit 0\"",
     "postinstall": "electron-builder install-app-deps",
-    "protocol-update": "git pull --recurse-submodules && sh -c \"cd protocol; ./generate-descriptors.sh\""
+    "protocol-update": "git pull --recurse-submodules && sh -c \"cd protocol; ./generate-descriptors.sh\"",
+    "dist": "build --publish onTagOrDraft"
   },
   "keywords": [],
   "author": "Zaibot Programs",
@@ -31,6 +31,7 @@
     "nedb": "^1.8.0",
     "node-fetch": "^1.7.1",
     "node-memory-cache": "0.0.5",
+    "node-notifier": "^5.1.2",
     "node-rsa": "^0.4.2",
     "protobufjs": "^6.8.0",
     "react": "^15.6.1",
@@ -41,20 +42,9 @@
     "reselect": "^3.0.1",
     "uuid": "^3.1.0"
   },
-  "cmake-js": {
-    "runtime": "electron",
-    "runtimeVersion": "1.6.11"
-  },
-  "iohook": {
-    "targets": [
-      "electron-53"
-    ],
-    "platforms": [
-      "win32"
-    ],
-    "arches": [
-      "x64"
-    ]
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Zaibot/activitylogger-client.git"
   },
   "build": {
     "appId": "zaibot.activitylogger",
@@ -81,6 +71,7 @@
     "@types/long": "^3.0.31",
     "@types/nedb": "^1.8.3",
     "@types/node": "^8.0.19",
+    "@types/node-notifier": "0.0.28",
     "@types/react": "^16.0.0",
     "@types/react-dom": "^15.5.1",
     "@types/react-redux": "^4.4.47",
