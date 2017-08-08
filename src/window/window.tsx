@@ -1,5 +1,4 @@
 import Electron from 'electron';
-import path from 'path';
 import url from 'url';
 import Config from '../config';
 
@@ -66,7 +65,7 @@ export default {
       mainWindow.loadURL(url.format({
         pathname: Config.resolveStatic('index.html'),
         protocol: 'file:',
-        slashes: true
+        slashes: true,
       }));
       mainWindow.on('hide', function() {
         closing();
@@ -81,5 +80,5 @@ export default {
       mainWindow.once('show', resolve);
       mainWindow.show();
     });
-  }
+  },
 };

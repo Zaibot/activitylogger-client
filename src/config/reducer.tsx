@@ -1,8 +1,7 @@
 import * as actions from '../actions';
 import { Action, isType } from '../actions';
-import Config from '.';
 
-export type State = {
+export interface State {
   serverUrl: string;
   privateKey: string;
   publicKey: string;
@@ -14,7 +13,7 @@ export type State = {
   maxKeyPresses: number;
   maxMousePresses: number;
   idleTimeout: number;
-};
+}
 const emptyState: State = {
   serverUrl: null,
   privateKey: null,
@@ -40,7 +39,7 @@ export default (state = emptyState, action: Action<any>) => {
       maxKeyPresses: 1000,
       maxMousePresses: 1000,
       idleTimeout: 60000 * 5, // 5 minutes
-    }
+    };
   }
   if (isType(actions.CHANGED_PUBLICKEY, action)) {
     const publicKey = action.payload.key;

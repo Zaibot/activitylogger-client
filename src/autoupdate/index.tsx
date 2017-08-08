@@ -1,1 +1,1 @@
-export { AutoUpdateMiddleware } from "./AutoUpdateMiddleware";
+export { AutoUpdateMiddleware } from './AutoUpdateMiddleware';

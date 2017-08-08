@@ -1,9 +1,9 @@
 import * as actions from '../actions';
-import { isType, Action } from '../actions';
+import { Action, isType } from '../actions';
 
-export type State = {
+export interface State {
   time: number;
-};
+}
 const emptyState: State = {
   time: Date.now(),
 };

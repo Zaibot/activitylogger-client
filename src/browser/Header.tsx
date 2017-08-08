@@ -1,9 +1,8 @@
 import React from 'react';
-import cx from './style.less';
 import { PureConnect } from 'react-redux-pure';
-import WebLink from '../WebLink';
 import selectors from '../store/selectors';
-import Icon from '../icon';
+import WebLink from '../WebLink';
+import cx from './style.less';
 
 export default PureConnect(`Header`)(
   (state) => ({
@@ -23,5 +22,5 @@ export default PureConnect(`Header`)(
         {<WebLink href={`https://al.zaibot.net/#token=NOT_IMPLEMENTED_YET`}>Dashboard</WebLink>}
       </div>
     </div>
-  )
-)
+  ),
+);

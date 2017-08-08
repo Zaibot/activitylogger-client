@@ -1,8 +1,7 @@
+import { takeEvery } from 'redux-saga';
+import * as saga from 'redux-saga/effects';
 import { Action, isType } from '../../actions';
 import * as actions from '../../actions';
-import { takeEvery, delay } from 'redux-saga';
-import * as saga from 'redux-saga/effects';
-import ActiveWindow from 'active-win';
 import { State as ConfigState } from '../../config/reducer';
 import selectors from '../../store/selectors';
 
@@ -11,7 +10,7 @@ export interface IActiveWindow {
   title: string;
 }
 
-export default function* () {
+export default function*() {
   yield takeEvery([actions.KEY_PRESSED.type, actions.MOUSE_PRESSED.type], monitorUserActive);
   yield takeEvery([actions.INTERVAL_TICK.type], monitorUserIdle);
 }
@@ -42,7 +41,7 @@ function* monitorUserIdle(action: Action<any>) {
       const timeEnd = time;
       yield [
         saga.put(actions.TRIGGERED_IDLE({ time, durationIdle })),
-        saga.put(actions.USERRETURNED_INIT({ timeStart, timeEnd }))
+        saga.put(actions.USERRETURNED_INIT({ timeStart, timeEnd })),
       ];
     }
   }

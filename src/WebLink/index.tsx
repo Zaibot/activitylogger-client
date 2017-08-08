@@ -1,5 +1,5 @@
-import React from 'react';
 import { shell } from 'electron';
+import React from 'react';
 import cx from './style.less';
 
 export default ({ href, children }: { href: string, children: React.ReactNode }) => (

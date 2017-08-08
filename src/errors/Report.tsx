@@ -1,5 +1,5 @@
+import { EventEmitter } from 'events';
 import DB from './DB';
-import { EventEmitter } from "events";
 
 const serializeError = (err: Error) => {
   try {
@@ -12,7 +12,7 @@ const serializeError = (err: Error) => {
 export class ReportArgs {
   public constructor(
     public readonly time: number,
-    public readonly error: Error
+    public readonly error: Error,
   ) { }
 }
 

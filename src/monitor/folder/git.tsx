@@ -1,6 +1,6 @@
-import path from 'path';
 import fs from 'async-file';
 import memoryCache from 'node-memory-cache';
+import path from 'path';
 
 const timeCacheGitFolder = 30000;
 
@@ -15,7 +15,7 @@ const hasGitFolder = async (folder: string) => {
     }
     throw ex;
   }
-}
+};
 
 export default class {
   public async resolve(folder: string): Promise<string> {

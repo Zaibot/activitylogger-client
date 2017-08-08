@@ -1,13 +1,12 @@
-import { Action, isType } from '../actions';
 import { dialog } from 'electron';
 import { takeEvery } from 'redux-saga';
-import * as actions from '../actions';
 import * as saga from 'redux-saga/effects';
-import path from 'path';
 import uuid from 'uuid';
+import { Action, isType } from '../actions';
+import * as actions from '../actions';
 import Database, { IFolderItem } from './database';
 
-export default function* () {
+export default function*() {
   yield saga.call(loadFolders);
   yield takeEvery([actions.MONITORFOLDER_INIT.type, actions.MONITORFOLDER_BROWSE.type], selectFolder);
   yield takeEvery([actions.MONITORFOLDER_COMMIT.type], persistFolder);
@@ -33,7 +32,7 @@ function* selectFolder() {
   const paths = yield showOpenDialog({ properties: ['openDirectory'], title: `Activity Logger - Monitor Folder` });
   if (paths) {
     for (const p of paths) {
-      yield saga.put(actions.MONITORFOLDER_CHANGED_FOLDER({ value: p }))
+      yield saga.put(actions.MONITORFOLDER_CHANGED_FOLDER({ value: p }));
     }
   }
   yield saga.put(actions.WINDOW_SHOW({}));

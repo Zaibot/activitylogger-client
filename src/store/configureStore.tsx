@@ -1,16 +1,15 @@
-import reducers from './reducer';
-import { applyMiddleware, createStore, combineReducers, Store } from 'redux';
-import State from './state';
-import * as actions from '../actions';
-import rootSaga from './rootSaga';
-import SagaMiddleware from 'redux-saga';
-import { Report } from '../errors';
 import {
   forwardToRenderer,
-  triggerAlias,
   replayActionMain,
 } from 'electron-redux';
-import { AutoUpdateMiddleware } from "../autoupdate";
+import { applyMiddleware, combineReducers, createStore } from 'redux';
+import SagaMiddleware from 'redux-saga';
+import * as actions from '../actions';
+import { AutoUpdateMiddleware } from '../autoupdate';
+import { Report } from '../errors';
+import reducers from './reducer';
+import rootSaga from './rootSaga';
+import State from './state';
 
 export default () => {
   const saga = SagaMiddleware();

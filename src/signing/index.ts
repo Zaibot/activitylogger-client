@@ -1,6 +1,4 @@
 import crypto from 'crypto';
-import fs from 'fs';
-import path from 'path';
 
 export class Signing {
   public sign(privateKey: string, buffer: Buffer): string {

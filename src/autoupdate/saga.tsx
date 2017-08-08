@@ -1,11 +1,9 @@
-import * as safe from '../helpers';
+import { dialog } from 'electron';
 import * as saga from 'redux-saga/effects';
 import * as actions from '../actions';
 import { Action, isType } from '../actions';
-import selectors from '../store/selectors';
-import { dialog } from 'electron';
 
-export default function* () {
+export default function*() {
   yield saga.takeEvery(actions.AUTOUPDATE_READY.type, updateReadyForInstall);
 }
 
@@ -16,7 +14,7 @@ function* updateReadyForInstall(action: Action<any>) {
     if (releaseNotes) {
       const splitNotes = releaseNotes.split(/[^\r]\n/);
       message += '\n\nRelease notes:\n';
-      splitNotes.forEach(notes => {
+      splitNotes.forEach((notes) => {
         message += notes + '\n\n';
       });
     }
@@ -28,10 +26,10 @@ function* updateReadyForInstall(action: Action<any>) {
         buttons: ['Install and Relaunch', 'Later'],
         defaultId: 0,
         message: `A new version of ${appName} has been downloaded`,
-        detail: message
-      }, response => {
-        resolve(response === 0)
-      })
+        detail: message,
+      }, (response) => {
+        resolve(response === 0);
+      });
     });
     if (response) {
       const time = Date.now();

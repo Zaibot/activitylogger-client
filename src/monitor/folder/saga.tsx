@@ -1,26 +1,25 @@
-import { Action, isType } from '../../actions';
-import { delay, buffers, eventChannel, Task } from 'redux-saga';
-import * as safe from '../../helpers';
-import * as actions from '../../actions';
-import * as saga from 'redux-saga/effects';
-import selectors from '../../store/selectors';
 import fs from 'fs';
-import Git from './git';
 import path from 'path';
+import { eventChannel, Task } from 'redux-saga';
+import * as saga from 'redux-saga/effects';
+import * as actions from '../../actions';
 import { Report } from '../../errors';
+import * as safe from '../../helpers';
+import selectors from '../../store/selectors';
+import Git from './git';
 
 export interface IActiveWindow {
   app: string;
   title: string;
 }
 
-export default function* () {
+export default function*() {
   yield safe.catchForkForever(monitorFolders);
 }
 
 function* monitorFolders() {
   let tasks: Task[] = [];
-  for (; ;) {
+  for (; ; ) {
     const { folders } = yield saga.select(selectors.folder);
     if (tasks.length) {
       yield saga.cancel(...tasks);
@@ -38,7 +37,7 @@ function* monitorFolder(path: string) {
   console.log(`[Monitor.Folder] ${path}`);
   const processorGit = new Git();
   const watcher = yield saga.call(fsWatchChannel, path);
-  for (; ;) {
+  for (; ; ) {
     const next = yield saga.take(watcher);
     const path = yield processorGit.resolve(next.path);
     if (path) {
@@ -48,8 +47,8 @@ function* monitorFolder(path: string) {
 }
 
 function fsWatchChannel(folder: string) {
-  return eventChannel(emitter => {
-    const options = { persistent: false, recursive: true }
+  return eventChannel((emitter) => {
+    const options = { persistent: false, recursive: true };
     const listener = (event: string, filename: string) => {
       if (event && filename) {
         emitter({ path: path.join(folder, filename) });

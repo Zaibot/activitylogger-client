@@ -1,11 +1,11 @@
 import * as actions from '../actions';
-import { isType, Action } from '../actions';
+import { Action, isType } from '../actions';
 
-export type State = {
+export interface State {
   current: string;
-};
+}
 const emptyState: State = {
-  current: 'Sync'
+  current: 'Sync',
 };
 
 export default (state = emptyState, action: Action<any>) => {

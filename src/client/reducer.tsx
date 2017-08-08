@@ -1,7 +1,7 @@
 import * as actions from '../actions';
 import { Action, isType } from '../actions';
 
-export type State = {
+export interface State {
   busy: boolean;
   online: boolean;
   error: string;
@@ -9,7 +9,7 @@ export type State = {
   aggregatorUrl: string;
   electronUrl: string;
   logUrl: string;
-};
+}
 const emptyState: State = {
   busy: false,
   online: false,
@@ -42,7 +42,7 @@ export default (state = emptyState, action: Action<any>) => {
     };
   }
   if (isType(actions.CONNECTION_ONLINE, action)) {
-    const { dashboardUrl, aggregatorUrl, logUrl, electronUrl } = action.payload
+    const { dashboardUrl, aggregatorUrl, logUrl, electronUrl } = action.payload;
     return {
       busy: false,
       online: true,

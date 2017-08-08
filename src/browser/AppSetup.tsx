@@ -1,9 +1,8 @@
-import * as actions from '../actions';
-import { Action, isType } from '../actions';
-import { PureConnect } from 'react-redux-pure';
 import React from 'react';
-import State from '../store/state';
+import { PureConnect } from 'react-redux-pure';
+import * as actions from '../actions';
 import selectors from '../store/selectors';
+import State from '../store/state';
 import WebLink from '../WebLink';
 
 export default PureConnect(`AppSetup`)(
@@ -11,7 +10,7 @@ export default PureConnect(`AppSetup`)(
     config: selectors.config(state),
   }),
   (dispatch) => ({
-    reset: () => dispatch(actions.RESET_CONFIG({}))
+    reset: () => dispatch(actions.RESET_CONFIG({})),
   }),
   ({ config, reset }) => (
     <div>

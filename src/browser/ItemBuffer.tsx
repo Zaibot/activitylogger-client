@@ -1,12 +1,11 @@
-import React from "react";
+import React from 'react';
 
+import { PureConnect } from 'react-redux-pure';
+import { Folder, Interaction, Meeting, Status, TimelineCreate, Window } from '../buffer';
+import { Task } from '../buffer/reducer';
 import Icon from '../icon';
-import State from '../store/state';
+import CancelBuffer from './CancelBuffer';
 import cx from './style.less';
-import { Folder, Status, Interaction, Window, TimelineCreate, Meeting } from "../buffer";
-import { PureConnect } from "react-redux-pure";
-import { Task } from "../buffer/reducer";
-import CancelBuffer from "./CancelBuffer";
 
 const StatusIcon = ({ status }: { status: Status }) => {
   if (status === Status.Waiting) {

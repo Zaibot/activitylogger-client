@@ -1,13 +1,12 @@
 import Electron from 'electron';
-import path from 'path';
-import Config from '../config';
-import Menu from './tray/menu';
+import notifier from 'node-notifier';
+import { Store } from 'redux';
 import * as saga from 'redux-saga';
 import * as actions from '../actions';
 import { Action, isType } from '../actions';
+import Config from '../config';
 import State from '../store/state';
-import { Store } from 'redux';
-import notifier from 'node-notifier';
+import Menu from './tray/menu';
 
 export function* rootSaga() {
   yield saga.takeEvery(actions.ERROR_APPLICATION.type, showApplicationError);
@@ -24,10 +23,10 @@ function showApplicationError(action: Action<any>) {
 
 let appIcon: Electron.Tray = null;
 export default (store: Store<State>) => {
-  if (appIcon) { return appIcon };
+  if (appIcon) { return appIcon; }
   // https://www.flaticon.com/free-icon/clock-circular-outline_59252#term=time&page=1&position=51
   const pathIcon = Config.resolveStatic('ic_access_time_white_24dp_1x.png');
-  appIcon = new Electron.Tray(pathIcon)
+  appIcon = new Electron.Tray(pathIcon);
   const contextMenu = Electron.Menu.buildFromTemplate(Menu);
   appIcon.on('click', () => {
     if (store.getState().window.visible) {
@@ -38,4 +37,4 @@ export default (store: Store<State>) => {
   });
   appIcon.setContextMenu(contextMenu);
   return appIcon;
-}
+};

@@ -1,26 +1,24 @@
-import http from 'http';
-import { activitylogger } from '../../protocol/dist/recording';
-import { delay, takeEvery, takeLatest } from 'redux-saga';
+import fetch from 'node-fetch';
+import { takeLatest } from 'redux-saga';
 import * as saga from 'redux-saga/effects';
+import { activitylogger } from '../../protocol/dist/recording';
 import * as actions from '../actions';
+import { Folder, Interaction, Meeting, Window } from '../buffer';
+import { State } from '../buffer/reducer';
+import { Report } from '../errors/index';
 import Signing from '../signing';
 import selectors from '../store/selectors';
-import { isType, Action } from '../actions';
-import fetch from 'node-fetch';
-import { State } from '../buffer/reducer';
-import { Window, Folder, Interaction, Meeting } from '../buffer';
-import { Report } from "../errors/index";
 
 function* tick(callback: saga.CallEffectFn<any>) {
-  yield saga.fork(function* () {
-    for (; ;) {
+  yield saga.fork(function*() {
+    for (; ; ) {
       yield saga.take(actions.INTERVAL_TICK.type);
       yield saga.call(callback);
     }
   });
 }
 
-export default function* () {
+export default function*() {
   yield takeLatest(actions.CHANGED_SERVER.type, discover);
   yield saga.call(tick, sync);
 }
@@ -28,7 +26,7 @@ export default function* () {
 function* discover() {
   try {
     yield saga.put(actions.CONNECTION_OFFLINE({}));
-    const { serverUrl } = yield saga.select(selectors.config)
+    const { serverUrl } = yield saga.select(selectors.config);
     yield saga.put(actions.CONNECTION_BUSY({}));
     const autoconfigRequest = yield fetch(`${serverUrl}/api/v1/autoconfig`);
     const autoconfig = yield autoconfigRequest.json();
@@ -51,7 +49,7 @@ function* sync() {
     if (!timelineId || !sourceId || !privateKey || !publicKey) { return; }
     const buffer: State = yield saga.select(selectors.buffer);
     const tasks = buffer.tasks.filter((x) => x.status !== `sent` && x.finishTime < Date.now() - 30000);
-    const task = tasks.reduce((state, cur) => cur.finishTime < state.finishTime ? cur : state, tasks[0])
+    const task = tasks.reduce((state, cur) => cur.finishTime < state.finishTime ? cur : state, tasks[0]);
     if (!task) { return; }
     if (task.type === `window`) {
       yield saga.call(postWindow, task.id, task.data);
@@ -81,15 +79,15 @@ function* postTimelineCreate(id: string, interaction: any) {
     const msg = { timelineId, publicKey, sourceId };
     const buffer = new Buffer(activitylogger.TimelineCreate.encode(msg).finish());
     const body = signed(privateKey, publicKeySignature, buffer);
-    const { logUrl } = yield saga.select(selectors.client)
+    const { logUrl } = yield saga.select(selectors.client);
     const response = yield fetch(`${logUrl}/api/v1/log/create`,
       {
         method: 'POST',
-        body: body,
+        body,
         headers: {
           'Content-Type': 'application/json',
-          'Content-Length': Buffer.byteLength(body)
-        }
+          'Content-Length': Buffer.byteLength(body),
+        },
       });
     if (!response.ok) {
       throw Error(`submission error: ${response.status} ${response.statusText}`);
@@ -109,16 +107,16 @@ function* postInteraction(id: string, interaction: Interaction) {
     const msg: activitylogger.IInteraction = { timelineId, sourceId, timeStart, timeEnd, keypresses, mousepresses };
     const buffer = new Buffer(activitylogger.Interaction.encode(msg).finish());
     const body = signed(privateKey, publicKey, buffer);
-    const { logUrl } = yield saga.select(selectors.client)
+    const { logUrl } = yield saga.select(selectors.client);
     const response = yield fetch(`${logUrl}/api/v1/log/interaction/${timelineId}`,
       {
         method: 'POST',
-        body: body,
+        body,
         headers: {
           'Authentication': `Bearer ${Buffer.from(publicKey).toString('base64')}`,
           'Content-Type': 'application/json',
-          'Content-Length': Buffer.byteLength(body)
-        }
+          'Content-Length': Buffer.byteLength(body),
+        },
       });
     if (!response.ok) {
       throw Error(`submission error: ${response.status} ${response.statusText}`);
@@ -138,16 +136,16 @@ function* postWindow(id: string, window: Window) {
     const msg: activitylogger.IWindowActivity = { timelineId, sourceId, timeStart, timeEnd, titles };
     const buffer = new Buffer(activitylogger.WindowActivity.encode(msg).finish());
     const body = signed(privateKey, publicKey, buffer);
-    const { logUrl } = yield saga.select(selectors.client)
+    const { logUrl } = yield saga.select(selectors.client);
     const response = yield fetch(`${logUrl}/api/v1/log/window/${timelineId}`,
       {
         method: 'POST',
-        body: body,
+        body,
         headers: {
           'Authentication': `Bearer ${Buffer.from(publicKey).toString('base64')}`,
           'Content-Type': 'application/json',
-          'Content-Length': Buffer.byteLength(body)
-        }
+          'Content-Length': Buffer.byteLength(body),
+        },
       });
     if (!response.ok) {
       throw Error(`submission error: ${response.status} ${response.statusText}`);
@@ -167,16 +165,16 @@ function* postFolder(id: string, window: Folder) {
     const msg: activitylogger.IFolderActivity = { timelineId, sourceId, timeStart, timeEnd, paths };
     const buffer = new Buffer(activitylogger.FolderActivity.encode(msg).finish());
     const body = signed(privateKey, publicKey, buffer);
-    const { logUrl } = yield saga.select(selectors.client)
+    const { logUrl } = yield saga.select(selectors.client);
     const response = yield fetch(`${logUrl}/api/v1/log/folder/${timelineId}`,
       {
         method: 'POST',
-        body: body,
+        body,
         headers: {
           'Authentication': `Bearer ${Buffer.from(publicKey).toString('base64')}`,
           'Content-Type': 'application/json',
-          'Content-Length': Buffer.byteLength(body)
-        }
+          'Content-Length': Buffer.byteLength(body),
+        },
       });
     if (!response.ok) {
       throw Error(`submission error: ${response.status} ${response.statusText}`);
@@ -196,16 +194,16 @@ function* postMeeting(id: string, window: Meeting) {
     const msg: activitylogger.IMeeting = { timelineId, sourceId, timeStart, timeEnd, description: `${title}\n${description}` };
     const buffer = new Buffer(activitylogger.FolderActivity.encode(msg).finish());
     const body = signed(privateKey, publicKey, buffer);
-    const { logUrl } = yield saga.select(selectors.client)
+    const { logUrl } = yield saga.select(selectors.client);
     const response = yield fetch(`${logUrl}/api/v1/log/meeting/${timelineId}`,
       {
         method: 'POST',
-        body: body,
+        body,
         headers: {
           'Authentication': `Bearer ${Buffer.from(publicKey).toString('base64')}`,
           'Content-Type': 'application/json',
-          'Content-Length': Buffer.byteLength(body)
-        }
+          'Content-Length': Buffer.byteLength(body),
+        },
       });
     if (!response.ok) {
       throw Error(`submission error: ${response.status} ${response.statusText}`);

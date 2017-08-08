@@ -1,9 +1,8 @@
-import * as actions from '../actions';
-import { Action, isType } from '../actions';
-import { PureConnect } from 'react-redux-pure';
 import React from 'react';
-import State from '../store/state';
+import { PureConnect } from 'react-redux-pure';
+import * as actions from '../actions';
 import selectors from '../store/selectors';
+import State from '../store/state';
 
 export default PureConnect(`PageConfig`)(
   (state: State) => ({

@@ -1,6 +1,4 @@
 import path from 'path';
-import fs from 'fs';
-import IConfig from './interface';
 import Database from './database';
 
 class Config {

@@ -1,10 +1,9 @@
 import { takeEvery } from 'redux-saga';
 import * as saga from 'redux-saga/effects';
 import * as actions from '../actions';
-import { Action, isType } from '../actions';
 import MainWindow from './window';
 
-export default function* () {
+export default function*() {
   yield takeEvery(actions.WINDOW_SHOW.type, monitorWindowShow);
   yield takeEvery(actions.WINDOW_HIDE.type, monitorWindowHide);
   yield takeEvery([actions.USERRETURNED_INIT.type], monitorExternalShow);
@@ -13,10 +12,10 @@ export default function* () {
 }
 
 function* monitorWindowShow() {
-  yield saga.put(actions.SELECT_VIEW({ view: 'Stats' }))
+  yield saga.put(actions.SELECT_VIEW({ view: 'Stats' }));
   yield MainWindow.show();
   yield MainWindow.wait();
-  yield saga.put(actions.WINDOW_HIDE({ }))
+  yield saga.put(actions.WINDOW_HIDE({ }));
 }
 
 function* monitorWindowHide() {

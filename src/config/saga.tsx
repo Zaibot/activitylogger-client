@@ -1,14 +1,14 @@
+import 'electron';
+import { dialog } from 'electron';
+import os from 'os';
+import { takeEvery } from 'redux-saga';
+import * as saga from 'redux-saga/effects';
+import uuid from 'uuid';
 import Config from '.';
 import { Action, isType } from '../actions';
 import * as actions from '../actions';
-import { takeEvery } from 'redux-saga';
-import * as saga from 'redux-saga/effects';
-import os from 'os';
-import uuid from 'uuid';
-import 'electron';
-import { dialog } from 'electron';
 
-export default function* () {
+export default function*() {
   yield saga.call(load);
   yield takeEvery([
     actions.CHANGED_PUBLICKEY.type,
@@ -22,7 +22,7 @@ export default function* () {
     actions.GENERATE_TIMELINE.type,
     actions.GENERATE_SOURCE.type,
   ], generate);
-  yield takeEvery([actions.EXPORT_KEYPAIR.type,], exportKeypair);
+  yield takeEvery([actions.EXPORT_KEYPAIR.type], exportKeypair);
 }
 function* load() {
   const privateKey = yield Config.getPrivateKey();
@@ -79,7 +79,7 @@ function* exportKeypair(action: Action<any>) {
     const paths = yield showOpenDialog({
       properties: ['openDirectory', 'createDirectory'],
       title: `Export Activity Logger Keypair`,
-      filters: [{ name: 'Key file', extensions: ['key'] }]
+      filters: [{ name: 'Key file', extensions: ['key'] }],
     });
     if (paths) {
       for (const p of paths) {

@@ -1,7 +1,7 @@
 import * as actions from '../actions';
-import { isType, Action } from '../actions';
+import { Action, isType } from '../actions';
 
-export type State = {
+export interface State {
   timeStart: number;
   windows: string[];
   folders: string[];
@@ -10,7 +10,7 @@ export type State = {
   mousepresses: number;
   submissionSuccess: number;
   submissionErrors: number;
-};
+}
 const emptyState: State = {
   timeStart: Date.now(),
   windows: [],

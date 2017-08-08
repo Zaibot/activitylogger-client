@@ -1,4 +1,3 @@
-import { Status } from './Status';
 
 export class Meeting {
   public constructor(

@@ -1,8 +1,8 @@
-import { PureConnect } from 'react-redux-pure';
 import React from 'react';
-import State from '../store/state';
-import selectors from '../store/selectors';
+import { PureConnect } from 'react-redux-pure';
 import Icon from '../icon';
+import selectors from '../store/selectors';
+import State from '../store/state';
 import Duration from './Duration';
 
 export default PureConnect(`CounterIdleTime`)(
@@ -12,5 +12,5 @@ export default PureConnect(`CounterIdleTime`)(
   }),
   null,
   ({ durationIdleReal, isIdle }) =>
-    <div><Icon value={`free_breakfast`} /> <Duration duration={durationIdleReal} /> idle {isIdle ? '(afk)' : ''}</div>
+    <div><Icon value={`free_breakfast`} /> <Duration duration={durationIdleReal} /> idle {isIdle ? '(afk)' : ''}</div>,
 );

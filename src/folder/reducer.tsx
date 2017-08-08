@@ -1,12 +1,12 @@
 import * as actions from '../actions';
-import { isType, Action } from '../actions';
+import { Action, isType } from '../actions';
 import { IFolderItem } from './database';
 
-export type State = {
+export interface State {
   active: boolean;
   folder: string;
   folders: IFolderItem[]
-};
+}
 const emptyState: State = {
   active: false,
   folder: '',

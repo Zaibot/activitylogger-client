@@ -1,7 +1,7 @@
-import path from 'path';
+import { app } from 'electron';
 import Datastore from 'nedb';
-import { app } from 'electron'
-import { IError } from "./IError";
+import path from 'path';
+import { IError } from './IError';
 
 export class DB {
   private _database: Datastore;
@@ -10,7 +10,7 @@ export class DB {
     this._database = new Datastore({
       corruptAlertThreshold: 1,
       filename: path.join(app.getPath('userData'), 'error.db'),
-      autoload: true
+      autoload: true,
     });
   }
 

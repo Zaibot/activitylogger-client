@@ -1,23 +1,23 @@
 import * as actions from '../actions';
-import { isType, Action } from '../actions';
-import { Window } from './Window';
+import { Action, isType } from '../actions';
 import { Folder } from './Folder';
-import { Meeting } from './Meeting';
 import { Interaction } from './Interaction';
-import { TimelineCreate } from './TimelineCreate';
+import { Meeting } from './Meeting';
 import { Status } from './Status';
+import { TimelineCreate } from './TimelineCreate';
+import { Window } from './Window';
 
-export type Task = {
+export interface Task {
   id: string;
   type: string;
   status: Status;
   creationTime: number;
   finishTime: number;
   data: Interaction | Window | Folder | TimelineCreate | Meeting;
-};
-export type State = {
+}
+export interface State {
   tasks: Task[];
-};
+}
 const emptyState: State = {
   tasks: [],
 };

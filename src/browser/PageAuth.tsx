@@ -1,9 +1,8 @@
-import * as actions from '../actions';
-import { Action, isType } from '../actions';
-import { PureConnect } from 'react-redux-pure';
 import React from 'react';
-import State from '../store/state';
+import { PureConnect } from 'react-redux-pure';
+import * as actions from '../actions';
 import selectors from '../store/selectors';
+import State from '../store/state';
 
 export default PureConnect(`PageAuth`)(
   (state: State) => ({
@@ -11,7 +10,7 @@ export default PureConnect(`PageAuth`)(
   }),
   (dispatch) => ({
     onExport: (privateKey: string, publicKey: string) => dispatch(actions.EXPORT_KEYPAIR({ privateKey, publicKey })),
-    onGenerate: () => dispatch(actions.GENERATE_KEYPAIR({}))
+    onGenerate: () => dispatch(actions.GENERATE_KEYPAIR({})),
   }),
   ({ config: { publicKey, privateKey }, onExport, onGenerate }) => (
     <div>

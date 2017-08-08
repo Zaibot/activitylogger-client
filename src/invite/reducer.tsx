@@ -1,11 +1,11 @@
 import * as actions from '../actions';
-import { isType, Action } from '../actions';
+import { Action, isType } from '../actions';
 
-export type State = {
+export interface State {
   active: boolean;
   publicKey: string;
   timelineId: string;
-};
+}
 const emptyState: State = {
   active: false,
   publicKey: '',

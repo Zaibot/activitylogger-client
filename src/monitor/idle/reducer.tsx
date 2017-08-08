@@ -1,10 +1,10 @@
 import * as actions from '../../actions';
-import { isType, Action } from '../../actions';
+import { Action, isType } from '../../actions';
 
-export type State = {
+export interface State {
   lastInteraction: number;
   lastIdle: number;
-};
+}
 const emptyState: State = {
   lastInteraction: Date.now(),
   lastIdle: 0,

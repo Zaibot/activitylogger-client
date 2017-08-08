@@ -1,6 +1,6 @@
 import AutoLaunch from 'auto-launch';
 
-var autoLauncher = new AutoLaunch({
+let autoLauncher = new AutoLaunch({
   appName: `Zaibot's Activity Logger`,
   name: `Zaibot's Activity Logger`,
   isHidden: true,
@@ -14,9 +14,9 @@ export default async () => {
         console.log(`autolaunch already enabled`);
         return;
       }
-      console.log(`autolaunch enabling`)
+      console.log(`autolaunch enabling`);
       await autoLauncher.enable();
-      console.log(`autolaunch enabled`)
+      console.log(`autolaunch enabled`);
     }
     catch (err) {
       console.error(err);

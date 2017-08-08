@@ -1,8 +1,8 @@
-import { Store } from 'redux';
-import State from '../store/state';
-import * as actions from '../actions';
 import keyboard from '@zaibot/ll-keyboard-hook-win';
 import mouse from '@zaibot/ll-mouse-hook-win';
+import { Store } from 'redux';
+import * as actions from '../actions';
+import State from '../store/state';
 
 export default (store: Store<State>) => {
   keyboard.on('up', () => {
@@ -11,4 +11,4 @@ export default (store: Store<State>) => {
   mouse.on('up', () => {
     store.dispatch(actions.MOUSE_PRESSED({}));
   });
-}
+};

@@ -1,13 +1,12 @@
-import setupHook from '../hook';
-import tray from './tray';
-import * as actions from '../actions';
-import configureStore from '../store/configureStore';
-import autolaunch from '../autolaunch';
 import { app } from 'electron';
-import path from 'path';
+import * as actions from '../actions';
+import autolaunch from '../autolaunch';
+import setupHook from '../hook';
+import configureStore from '../store/configureStore';
+import tray from './tray';
 
 export default () => {
-  process.on('uncaughtException' as any, function(error: Error) {
+  process.on('uncaughtException' as any, function (error: Error) {
     // Handle the error
     console.error(error.toString());
   });
@@ -17,7 +16,7 @@ export default () => {
     const store = configureStore();
     const shouldQuit = app.makeSingleInstance((commandLine, workingDirectory) => {
       store.dispatch(actions.WINDOW_SHOW({}));
-    })
+    });
     if (shouldQuit) {
       return app.quit();
     }

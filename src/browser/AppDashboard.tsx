@@ -1,10 +1,15 @@
-import { createSelector } from 'reselect';
-import { PureConnect } from 'react-redux-pure';
 import React from 'react';
+import { PureConnect } from 'react-redux-pure';
 import uuid from 'uuid';
 
-import { Status } from '../buffer';
 import * as actions from '../actions';
+import { Status } from '../buffer';
+import Icon from '../icon';
+import selectors from '../store/selectors';
+import State from '../store/state';
+import ViewSelector from '../view/Selector';
+import View from '../view/View';
+import WebLink from '../WebLink';
 import CounterFolder from './CounterFolder';
 import CounterIdleTime from './CounterIdleTime';
 import CounterKey from './CounterKey';
@@ -13,18 +18,11 @@ import CounterMouse from './CounterMouse';
 import CounterSessionTime from './CounterSessionTime';
 import CounterSubmissions from './CounterSubmissions';
 import CounterWindow from './CounterWindow';
-import cx from './style.less';
 import Header from './Header';
-import Icon from '../icon';
 import PageAdvanced from './PageAdvanced';
 import PageAuth from './PageAuth';
 import PageBuffer from './PageBuffer';
 import PageConfig from './PageConfig';
-import selectors from '../store/selectors';
-import State from '../store/state';
-import View from '../view/View';
-import ViewSelector from '../view/Selector';
-import WebLink from '../WebLink';
 
 export default PureConnect(`AppDashboard`)(
   (state: State) => ({
@@ -33,7 +31,7 @@ export default PureConnect(`AppDashboard`)(
     windowTitleLast: selectors.windowTitleLast(state),
   }),
   (dispatch) => ({
-    onInvite: () => dispatch(actions.INVITE_INIT({ timelineId: uuid.v4() }))
+    onInvite: () => dispatch(actions.INVITE_INIT({ timelineId: uuid.v4() })),
   }),
   ({ offline, pendingBuffer, windowTitleLast, onInvite }) => (
     <div>
@@ -46,7 +44,7 @@ export default PureConnect(`AppDashboard`)(
         { id: `Advanced`, title: <Icon size={48} value={`build`} /> },
         { id: `Auth`, title: <Icon size={48} value={`lock`} /> },
         { id: `Sync`, title: <Icon size={48} value={offline ? `cloud_queue` : pendingBuffer ? `cloud_upload` : `cloud_done`} /> },
-        { id: `About`, title: <Icon size={48} value={`info`} /> }
+        { id: `About`, title: <Icon size={48} value={`info`} /> },
       ]} />
       <View name={`Stats`}>
         <CounterKey />

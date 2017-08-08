@@ -1,4 +1,3 @@
-import { Status } from './Status';
 
 export class TimelineCreate {
   public constructor(

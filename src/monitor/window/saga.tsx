@@ -1,21 +1,20 @@
-import { Action, isType } from '../../actions';
-import * as actions from '../../actions';
+import ActiveWindow from 'active-win';
 import { delay } from 'redux-saga';
 import * as saga from 'redux-saga/effects';
+import * as actions from '../../actions';
 import { Report } from '../../errors';
-import ActiveWindow from 'active-win';
 
 export interface IActiveWindow {
   app: string;
   title: string;
 }
 
-export default function* () {
+export default function*() {
   yield saga.fork(monitorActiveWindowTitle);
 }
 function* monitorActiveWindowTitle() {
   let last: IActiveWindow = { app: null, title: null };
-  for (; ;) {
+  for (; ; ) {
     try {
       const { app, title } = yield ActiveWindow();
       if (app !== last.app || title !== last.title) {

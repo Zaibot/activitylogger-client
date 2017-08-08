@@ -1,8 +1,8 @@
-import { PureConnect } from 'react-redux-pure';
 import React from 'react';
-import State from '../store/state';
-import selectors from '../store/selectors';
+import { PureConnect } from 'react-redux-pure';
 import Icon from '../icon';
+import selectors from '../store/selectors';
+import State from '../store/state';
 import cx from './style.less';
 
 export default PureConnect(`CounterWindow`)(

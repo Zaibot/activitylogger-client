@@ -2,25 +2,20 @@ import React from 'react';
 import { PureConnect } from 'react-redux-pure';
 import { createSelector } from 'reselect';
 
-import * as actions from '../actions';
-import Icon from '../icon';
-import ItemBuffer from './ItemBuffer';
+import { Status } from '../buffer';
 import State from '../store/state';
-import cx from './style.less';
-import selectors from '../store/selectors';
-import { Action, isType } from '../actions';
-import { Status, Folder, Interaction, Window, Meeting, TimelineCreate } from '../buffer';
+import ItemBuffer from './ItemBuffer';
 
 const queueItems = createSelector(
   (state: State) => state.buffer.tasks,
   (tasks) => {
     return tasks.slice(0).sort((a, b) => b.creationTime - a.creationTime);
-  }
-)
+  },
+);
 const queueLength = createSelector(
   queueItems,
-  (combined) => combined.reduce((state, cur) => state + (cur.status !== Status.Sent ? 1 : 0), 0)
-)
+  (combined) => combined.reduce((state, cur) => state + (cur.status !== Status.Sent ? 1 : 0), 0),
+);
 export default PureConnect(`PageBuffer`)(
   (state: State) => ({
     items: queueItems(state),

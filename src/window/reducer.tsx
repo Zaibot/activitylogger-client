@@ -1,9 +1,9 @@
 import * as actions from '../actions';
-import { isAnyType, Action } from '../actions';
+import { Action, isAnyType } from '../actions';
 
-export type State = {
+export interface State {
   visible: boolean;
-};
+}
 const emptyState: State = {
   visible: false,
 };

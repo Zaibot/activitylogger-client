@@ -1,13 +1,11 @@
-import reducers from './reducer';
-import { applyMiddleware, createStore, combineReducers, Store } from 'redux';
-import State from './state';
-import rootSaga from './rootSaga';
-import SagaMiddleware from 'redux-saga';
 import {
   forwardToMain,
-  replayActionRenderer,
   getInitialStateRenderer,
+  replayActionRenderer,
 } from 'electron-redux';
+import { applyMiddleware, combineReducers, createStore } from 'redux';
+import reducers from './reducer';
+import State from './state';
 
 export default () => {
   const initialState = getInitialStateRenderer();

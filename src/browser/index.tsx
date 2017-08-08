@@ -1,17 +1,16 @@
 import '@zaibot/css-reset/reset.less';
 
-import configureStore from '../store/configureStoreBrowser';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Dashboard from './AppDashboard';
-import UserReturned from './AppUserReturned';
-import FolderMonitor from './AppFolderMonitor';
-import Setup from './AppSetup';
-import Invite from './AppInvite';
 import { Provider } from 'react-redux';
 import { PureConnect } from 'react-redux-pure';
-import State from '../store/state';
+import configureStore from '../store/configureStoreBrowser';
 import selectors from '../store/selectors';
+import State from '../store/state';
+import Dashboard from './AppDashboard';
+import FolderMonitor from './AppFolderMonitor';
+import Invite from './AppInvite';
+import UserReturned from './AppUserReturned';
 import cx from './style.less';
 
 const App = PureConnect(`App`)(
