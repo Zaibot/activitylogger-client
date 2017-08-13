@@ -6,7 +6,7 @@ import configureStore from '../store/configureStore';
 import tray from './tray';
 
 export default () => {
-  process.on('uncaughtException' as any, function (error: Error) {
+  process.on('uncaughtException' as any, function(error: Error) {
     // Handle the error
     console.error(error.toString());
   });

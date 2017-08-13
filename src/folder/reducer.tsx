@@ -5,7 +5,7 @@ import { IFolderItem } from './database';
 export interface State {
   active: boolean;
   folder: string;
-  folders: IFolderItem[]
+  folders: IFolderItem[];
 }
 const emptyState: State = {
   active: false,

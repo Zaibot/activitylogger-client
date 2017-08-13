@@ -1,3 +1,4 @@
+import { Caption, Label, Screen, Title, TitleSub } from '@zaibot/activitylogger-react';
 import React from 'react';
 import { PureConnect } from 'react-redux-pure';
 import * as actions from '../actions';
@@ -17,22 +18,22 @@ export default PureConnect(`AppInvite`)(
     onCommit: (timelineId: string, publicKey: string) => dispatch(actions.INVITE_COMMIT({ timelineId, publicKey })),
   }),
   ({ invite: { timelineId, publicKey }, onPublicKeyChanged, onCancel, onCommit }) => (
-    <div>
-      <h1>Invite</h1>
+    <Screen>
+      <Title>Invite</Title>
       <div>
-        <h2>What to do?</h2>
+        <TitleSub>What to do?</TitleSub>
         <p>
-          Ask the user to copy their public key from <Icon value={`lock`} />.
+          <Label>Ask the user to copy their public key from <Icon value={`lock`} />.</Label>
         </p>
         <p>
-          Fill in their public key below and give them the following timeline ID which they need to enter into <Icon value={`settings`} />:
+          <Label>Fill in their public key below and give them the following timeline ID which they need to enter into <Icon value={`settings`} /></Label>
         </p>
         <p>
-          Then click Register timeline
+          <Label>Then click Register timeline</Label>
         </p>
       </div>
-      <div><label>New Timeline ID:<br /><input type="text" size={40} value={timelineId} /></label></div>
-      <div><label>Their Public Key:<br /><textarea cols={40} rows={10} value={publicKey} onChange={(e) => onPublicKeyChanged(e.target.value)} /></label></div>
+      <div><Caption>New Timeline ID</Caption><br /><input type="text" size={40} value={timelineId} /></div>
+      <div><Caption>Their Public Key</Caption><br /><textarea cols={40} rows={6} value={publicKey} onChange={(e) => onPublicKeyChanged(e.target.value)} style={{ fontSize: 12 }} /></div>
       <div><button onClick={() => onCommit(timelineId, publicKey)}>Register timeline</button> <button onClick={onCancel}>Cancel</button></div>
-    </div>
+    </Screen>
   ));

@@ -1,6 +1,6 @@
+import { Icon, Label } from '@zaibot/activitylogger-react';
 import React from 'react';
 import { PureConnect } from 'react-redux-pure';
-import Icon from '../icon';
 import selectors from '../store/selectors';
 import State from '../store/state';
 import Duration from './Duration';
@@ -12,5 +12,7 @@ export default PureConnect(`CounterIdleTime`)(
   }),
   null,
   ({ durationIdleReal, isIdle }) =>
-    <div><Icon value={`free_breakfast`} /> <Duration duration={durationIdleReal} /> idle {isIdle ? '(afk)' : ''}</div>,
+    <div>
+      <Label><Icon iconSize={`24px` as any}>free_breakfast</Icon> <Duration duration={durationIdleReal} /> idle {isIdle ? '(afk)' : ''}</Label>
+    </div>,
 );

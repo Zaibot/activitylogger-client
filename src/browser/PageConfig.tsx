@@ -1,3 +1,4 @@
+import { Caption, Label } from '@zaibot/activitylogger-react';
 import React from 'react';
 import { PureConnect } from 'react-redux-pure';
 import * as actions from '../actions';
@@ -21,13 +22,15 @@ export default PureConnect(`PageConfig`)(
   }),
   ({ statusConnection, serverUrl, sourceId, timelineId, onResetServer, onChangeServerUrl, onChangeSource, onChangeTimeline, onGenerateTimeline, onGenerateSource }) => (
     <div>
-      <div><label>Server URL:</label><br /><input type="text" value={serverUrl} onChange={(e) => onChangeServerUrl(e.target.value)} /> <button onClick={onResetServer}>Default</button></div>
-      <div>{statusConnection}</div>
-      <div><label>Timeline ID:</label><br /><input type="text" value={timelineId} onChange={(e) => onChangeTimeline(e.target.value)} /> <button onClick={onGenerateTimeline}>Generate</button></div>
-      <div><label>Source ID:</label><br /><input type="text" value={sourceId} onChange={(e) => onChangeSource(e.target.value)} /> <button onClick={onGenerateSource}>Machine Name</button></div>
-      <h2>Track</h2>
-      <div><label><input type="checkbox" checked /> Interactions</label></div>
-      <div><label><input type="checkbox" checked /> Applications</label></div>
-      <div><label><input type="checkbox" checked /> Folders</label></div>
+      <div><Caption>Server URL</Caption><br /><input type="text" value={serverUrl} onChange={(e) => onChangeServerUrl(e.target.value)} /> <button onClick={onResetServer}>Default</button></div>
+      <div><Label>{statusConnection}</Label></div>
+      <div><Caption>Timeline ID</Caption><br /><input type="text" value={timelineId} onChange={(e) => onChangeTimeline(e.target.value)} /> <button onClick={onGenerateTimeline}>Generate</button></div>
+      <div><Caption>Source ID</Caption><br /><input type="text" value={sourceId} onChange={(e) => onChangeSource(e.target.value)} /> <button onClick={onGenerateSource}>Machine Name</button></div>
+      <div>
+        <Caption>Track</Caption>
+        <div><Label><input type="checkbox" checked /> Interactions</Label></div>
+        <div><Label><input type="checkbox" checked /> Applications</Label></div>
+        <div><Label><input type="checkbox" checked /> Folders</Label></div>
+      </div>
     </div>
   ));

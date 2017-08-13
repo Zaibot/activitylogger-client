@@ -1,3 +1,4 @@
+import { Caption } from '@zaibot/activitylogger-react';
 import React from 'react';
 import { PureConnect } from 'react-redux-pure';
 import { createSelector } from 'reselect';
@@ -25,8 +26,8 @@ export default PureConnect(`PageBuffer`)(
   }),
   ({ items, queue }) => (
     <div>
-      {queue ? (<h2>{queue} submission(s) in queue</h2>) : (<h2>Server up-to-date</h2>)}
-      {items.slice(0, 10).map((item) => <ItemBuffer item={item} />)}
+      {queue ? (<Caption>{queue} submission(s) in queue</Caption>) : (<Caption>Server up-to-date</Caption>)}
+      {items.slice(0, 10).map((item) => <ItemBuffer key={item.id} item={item} />)}
       {items.length > 10 ? <div>{items.length - 10} more items</div> : null}
     </div>
   ));

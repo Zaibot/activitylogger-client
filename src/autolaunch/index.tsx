@@ -1,6 +1,6 @@
 import AutoLaunch from 'auto-launch';
 
-let autoLauncher = new AutoLaunch({
+const autoLauncher = new AutoLaunch({
   appName: `Zaibot's Activity Logger`,
   name: `Zaibot's Activity Logger`,
   isHidden: true,

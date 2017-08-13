@@ -1,9 +1,8 @@
+import { Icon, Label, Reference } from '@zaibot/activitylogger-react';
 import React from 'react';
 import { PureConnect } from 'react-redux-pure';
-import Icon from '../icon';
 import selectors from '../store/selectors';
 import State from '../store/state';
-import cx from './style.less';
 
 export default PureConnect(`CounterWindow`)(
   (state: State) => ({
@@ -12,5 +11,9 @@ export default PureConnect(`CounterWindow`)(
   }),
   null,
   ({ windows, windowTitleLast }) => (
-    <div><Icon value={`web_asset`} /> {windows} application(s)<br /><span className={cx(`stats-detail`)}>{windowTitleLast}</span></div>
+    <div>
+      <Label><Icon iconSize={`24px` as any}>web_asset</Icon> {windows} application(s)</Label>
+      <br />
+      <Reference>{windowTitleLast}</Reference>
+    </div>
   ));

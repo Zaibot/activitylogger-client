@@ -22,6 +22,7 @@
   "author": "Zaibot Programs",
   "license": "ISC",
   "dependencies": {
+    "@zaibot/activitylogger-react": "^0.1.4",
     "@zaibot/ll-keyboard-hook-win": "^4.0.1",
     "@zaibot/ll-mouse-hook-win": "^4.0.1",
     "active-win": "^2.0.0",
@@ -45,6 +46,9 @@
     "react-redux-pure": "^0.1.7",
     "redux-saga": "^0.15.6",
     "reselect": "^3.0.1",
+    "styletron": "^2.5.7",
+    "styletron-client": "^2.5.7",
+    "styletron-react": "^2.5.8",
     "uuid": "^3.1.0"
   },
   "repository": {
@@ -86,6 +90,7 @@
     "@types/uuid": "^3.4.0",
     "@zaibot/css-reset": "^1.0.6",
     "@zaibot/tslint-preset": "github:zaibot/tslint-preset",
+    "babili-webpack-plugin": "^0.1.2",
     "classnames-loader": "^2.0.0",
     "cross-env": "^5.0.2",
     "css-loader": "^0.28.4",

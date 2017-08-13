@@ -13,7 +13,7 @@ export default PureConnect<{ items: Array<{ id: string; title: React.ReactChild;
   }),
   ({ items, view, select }) => (
     <ul className={cx(`list`)}>
-      {items.map((item) => <li className={cx(`item`, { active: view === item.id })} onClick={select(item.id)}>{item.title}</li>)}
+      {items.map((item) => <li key={item.id} className={cx(`item`, { active: view === item.id })} onClick={select(item.id)}>{item.title}</li>)}
     </ul>
   ),
 );

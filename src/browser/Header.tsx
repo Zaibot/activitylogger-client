@@ -1,3 +1,4 @@
+import { Title } from '@zaibot/activitylogger-react';
 import React from 'react';
 import { PureConnect } from 'react-redux-pure';
 import selectors from '../store/selectors';
@@ -15,7 +16,7 @@ export default PureConnect(`Header`)(
   ({ busy, offline }) => (
     <div className={cx(`header`)}>
       <div className={cx(`logo`, { busy, offline })}>
-        <h1>Activity Logger{offline ? ' Offline' : ''}{busy ? '...' : ''}</h1>
+        <Title>Activity Logger{offline ? ' Offline' : ''}{busy ? '...' : ''}</Title>
       </div>
       <div className={cx(`sysactions`)}>
         {/*offline ? null : <WebLink href={`https://al.zaibot.net/#token=NOT_IMPLEMENTED_YET`}><Icon value={`open_in_browser`} size={48} /></WebLink>*/}

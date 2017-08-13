@@ -1,6 +1,6 @@
+import { Icon, Label } from '@zaibot/activitylogger-react';
 import React from 'react';
 import { PureConnect } from 'react-redux-pure';
-import Icon from '../icon';
 import selectors from '../store/selectors';
 import State from '../store/state';
 import Duration from './Duration';
@@ -11,5 +11,7 @@ export default PureConnect(`CounterSessionTime`)(
   }),
   null,
   ({ recording }) =>
-    <div><Icon value={`access_time`} /> <Duration duration={recording} /> session time</div>,
+    <div>
+      <Label><Icon iconSize={`24px` as any}>access_time</Icon> <Duration duration={recording} /> session time</Label>
+    </div>,
 );

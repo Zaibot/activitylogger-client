@@ -59,7 +59,7 @@ export default {
         zoomToPageWidth: true,
         // darkTheme: true,
         icon: pathIcon,
-        backgroundColor: '#f0f0f0',
+        backgroundColor: '#fff',
         // frame: false,
       });
       mainWindow.loadURL(url.format({
@@ -74,7 +74,7 @@ export default {
         cancelClosing();
         mainWindow = null;
       });
-      // mainWindow.on('show', function() {
+      // mainWindow.on('show', function () {
       //   mainWindow.webContents.openDevTools();
       // });
       mainWindow.once('show', resolve);

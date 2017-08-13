@@ -1,3 +1,4 @@
+import { Caption, Label, Screen, Title } from '@zaibot/activitylogger-react';
 import React from 'react';
 import { PureConnect } from 'react-redux-pure';
 import * as actions from '../actions';
@@ -18,11 +19,11 @@ export default PureConnect(`AppUserReturned`)(
     onCommit: (timeStart: number, timeEnd: number, title: string, description: string) => dispatch(actions.USERRETURNED_COMMIT({ timeStart, timeEnd, title, description })),
   }),
   ({ userReturned: { title, description, timeStart, timeEnd }, onTitleChanged, onDescriptionChanged, onSkip, onCommit }) => (
-    <div>
-      <h1>Welcome back!</h1>
-      <div><h2>You were away for</h2><span><Duration duration={timeEnd - timeStart} /> since {formatter.format(timeStart)}</span></div>
-      <div><label>Title:<br /><input type="text" size={40} value={title} onChange={(e) => onTitleChanged(e.target.value)} /></label></div>
-      <div><label>Description:<br /><textarea cols={40} rows={10} value={description} onChange={(e) => onDescriptionChanged(e.target.value)} /></label></div>
+    <Screen>
+      <Title>Welcome back!</Title>
+      <div><Caption>You were away for</Caption><br /><Label><Duration duration={timeEnd - timeStart} /> since {formatter.format(timeStart)}</Label></div>
+      <div><Caption>Title</Caption><br /><input type="text" size={40} value={title} onChange={(e) => onTitleChanged(e.target.value)} /></div>
+      <div><Caption>Description</Caption><br /><textarea cols={40} rows={10} value={description} onChange={(e) => onDescriptionChanged(e.target.value)} /></div>
       <div><button onClick={() => onCommit(timeStart, timeEnd, title, description)}>Log this as meeting</button> <button onClick={onSkip}>Skip</button></div>
-    </div>
+    </Screen>
   ));

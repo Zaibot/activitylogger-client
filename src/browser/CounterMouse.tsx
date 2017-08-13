@@ -1,6 +1,6 @@
+import { Icon, Label } from '@zaibot/activitylogger-react';
 import React from 'react';
 import { PureConnect } from 'react-redux-pure';
-import Icon from '../icon';
 import selectors from '../store/selectors';
 import State from '../store/state';
 
@@ -11,6 +11,6 @@ export default PureConnect(`CounterMouse`)(
   null,
   ({ recording }) => (
     <div>
-      <Icon value={`mouse`} /> <span>{recording.mousepresses} clicks</span>
+      <Label><Icon iconSize={`24px` as any}>mouse</Icon> {recording.mousepresses} clicks</Label>
     </div>
   ));

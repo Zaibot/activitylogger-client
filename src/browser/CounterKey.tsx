@@ -1,6 +1,6 @@
+import { Icon, Label } from '@zaibot/activitylogger-react';
 import React from 'react';
 import { PureConnect } from 'react-redux-pure';
-import Icon from '../icon';
 import selectors from '../store/selectors';
 import State from '../store/state';
 
@@ -11,6 +11,6 @@ export default PureConnect(`CounterKey`)(
   null,
   ({ recording }) => (
     <div>
-      <Icon value={`keyboard`} /> <span>{recording.keypresses} key presses</span>
+      <Label><Icon iconSize={`24px` as any}>keyboard</Icon> {recording.keypresses} key presses</Label>
     </div>
   ));

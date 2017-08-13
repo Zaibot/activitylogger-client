@@ -1,10 +1,10 @@
+import { Icon, Screen } from '@zaibot/activitylogger-react';
 import React from 'react';
 import { PureConnect } from 'react-redux-pure';
 import uuid from 'uuid';
 
 import * as actions from '../actions';
 import { Status } from '../buffer';
-import Icon from '../icon';
 import selectors from '../store/selectors';
 import State from '../store/state';
 import ViewSelector from '../view/Selector';
@@ -23,6 +23,8 @@ import PageAdvanced from './PageAdvanced';
 import PageAuth from './PageAuth';
 import PageBuffer from './PageBuffer';
 import PageConfig from './PageConfig';
+import PageFolder from './PageFolder';
+import PageMeeting from './PageMeeting';
 
 export default PureConnect(`AppDashboard`)(
   (state: State) => ({
@@ -34,17 +36,17 @@ export default PureConnect(`AppDashboard`)(
     onInvite: () => dispatch(actions.INVITE_INIT({ timelineId: uuid.v4() })),
   }),
   ({ offline, pendingBuffer, windowTitleLast, onInvite }) => (
-    <div>
+    <Screen>
       <Header />
       <ViewSelector items={[
-        { id: `Stats`, title: <Icon size={48} value={`home`} /> },
-        { id: `Meeting`, title: <Icon size={48} value={`people`} /> },
-        { id: `Folders`, title: <Icon size={48} value={`folder`} /> },
-        { id: `Configuration`, title: <Icon size={48} value={`settings`} /> },
-        { id: `Advanced`, title: <Icon size={48} value={`build`} /> },
-        { id: `Auth`, title: <Icon size={48} value={`lock`} /> },
-        { id: `Sync`, title: <Icon size={48} value={offline ? `cloud_queue` : pendingBuffer ? `cloud_upload` : `cloud_done`} /> },
-        { id: `About`, title: <Icon size={48} value={`info`} /> },
+        { id: `Stats`, title: <Icon iconSize={`48px` as any}>home</Icon> },
+        { id: `Meeting`, title: <Icon iconSize={`48px` as any}>people</Icon> },
+        { id: `Folders`, title: <Icon iconSize={`48px` as any}>folder</Icon> },
+        { id: `Configuration`, title: <Icon iconSize={`48px` as any}>settings</Icon> },
+        { id: `Advanced`, title: <Icon iconSize={`48px` as any}>build</Icon> },
+        { id: `Auth`, title: <Icon iconSize={`48px` as any}>lock</Icon> },
+        { id: `Sync`, title: <Icon iconSize={`48px` as any}>{offline ? `cloud_queue` : pendingBuffer ? `cloud_upload` : `cloud_done`}</Icon> },
+        { id: `About`, title: <Icon iconSize={`48px` as any}>info</Icon> },
       ]} />
       <View name={`Stats`}>
         <CounterKey />
@@ -58,10 +60,10 @@ export default PureConnect(`AppDashboard`)(
         <button onClick={onInvite}>Invite another user</button>
       </View>
       <View name={`Meeting`}>
-        <CounterMeeting />
+        <PageMeeting />
       </View>
       <View name={`Folders`}>
-        <CounterFolder />
+        <PageFolder />
       </View>
       <View name={`Configuration`}>
         <PageConfig />
@@ -84,5 +86,5 @@ export default PureConnect(`AppDashboard`)(
           <WebLink href="https://github.com/Zaibot/activitylogger-website">github.com/Zaibot/activitylogger-website</WebLink><br />
         </p>
       </View>
-    </div>
+    </Screen>
   ));

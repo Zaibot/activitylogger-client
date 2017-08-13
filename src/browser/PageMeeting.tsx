@@ -1,3 +1,4 @@
+import { Caption } from '@zaibot/activitylogger-react';
 import React from 'react';
 import { PureConnect } from 'react-redux-pure';
 import * as actions from '../actions';
@@ -14,8 +15,8 @@ export default PureConnect(`PageMeeting`)(
   }),
   ({ config, exportPrivateKey, generateKeypair }) => (
     <div>
-      <div><label>Title:<br /><input type="text" /></label></div>
-      <div><label>Description:<br /><textarea /></label></div>
+      <div><Caption>Title</Caption><br /><input type="text" /></div>
+      <div><Caption>Description</Caption><br /><textarea /></div>
       <button>Add</button>
     </div>
   ));

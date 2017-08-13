@@ -1,9 +1,12 @@
 import '@zaibot/css-reset/reset.less';
 
+import { Background } from '@zaibot/activitylogger-react';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { PureConnect } from 'react-redux-pure';
+import Styletron from 'styletron-client';
+import { StyletronProvider } from 'styletron-react';
 import configureStore from '../store/configureStoreBrowser';
 import selectors from '../store/selectors';
 import State from '../store/state';
@@ -28,4 +31,12 @@ const App = PureConnect(`App`)(
   ));
 
 const store = configureStore();
-ReactDOM.render(<Provider store={store}><App /></Provider>, document.querySelector('app'));
+ReactDOM.render((
+  <Provider store={store}>
+    <StyletronProvider styletron={new Styletron()}>
+      <Background>
+        <App />
+      </Background>
+    </StyletronProvider>
+  </Provider>
+), document.querySelector('app'));

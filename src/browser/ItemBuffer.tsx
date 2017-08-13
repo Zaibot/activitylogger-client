@@ -1,23 +1,23 @@
+import { Icon } from '@zaibot/activitylogger-react';
 import React from 'react';
 
 import { PureConnect } from 'react-redux-pure';
 import { Folder, Interaction, Meeting, Status, TimelineCreate, Window } from '../buffer';
 import { Task } from '../buffer/reducer';
-import Icon from '../icon';
 import CancelBuffer from './CancelBuffer';
 import cx from './style.less';
 
 const StatusIcon = ({ status }: { status: Status }) => {
   if (status === Status.Waiting) {
-    return <Icon value={`access_time`} />;
+    return <Icon align iconSize={`24px` as any}>access_time</Icon>;
   } else if (status === Status.Sending) {
-    return <Icon value={`file_upload`} />;
+    return <Icon align iconSize={`24px` as any}>file_upload</Icon>;
   } else if (status === Status.Sent) {
-    return <Icon value={`check`} />;
+    return <Icon align iconSize={`24px` as any}>check</Icon>;
   } else if (status === Status.Error) {
-    return <Icon value={`warning`} />;
+    return <Icon align iconSize={`24px` as any}>warning</Icon>;
   } else if (status === Status.Cancelled) {
-    return <Icon value={`delete`} />;
+    return <Icon align iconSize={`24px` as any}>delete</Icon>;
   }
 };
 

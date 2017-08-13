@@ -1,3 +1,4 @@
+import { Caption, Label } from '@zaibot/activitylogger-react';
 import React from 'react';
 import { PureConnect } from 'react-redux-pure';
 import * as actions from '../actions';
@@ -13,11 +14,11 @@ export default PureConnect(`PageAdvanced`)(
   }),
   ({ config, reset }) => (
     <div>
-      <div><label>Recording timespan:</label><br /><input type="number" min="5" max="900" value={(config.maxDuration / 1000).toFixed(0)} /> seconds</div>
-      <div><label>Window titles:</label><br /><input type="number" min="1" max="100" value={config.maxWindows} /></div>
-      <div><label>Folder paths:</label><br /><input type="number" min="1" max="100" value={config.maxFolders} /></div>
-      <div><label>Key presses:</label><br /><input type="number" min="1" max="10000" value={config.maxKeyPresses} /></div>
-      <div><label>Mouse clicks:</label><br /><input type="number" min="1" max="10000" value={config.maxMousePresses} /></div>
+      <div><Caption>Recording timespan</Caption><br /><input type="number" min="5" max="900" value={(config.maxDuration / 1000).toFixed(0)} /> <Label>seconds</Label></div>
+      <div><Caption>Window titles</Caption><br /><input type="number" min="1" max="100" value={config.maxWindows} /></div>
+      <div><Caption>Folder paths</Caption><br /><input type="number" min="1" max="100" value={config.maxFolders} /></div>
+      <div><Caption>Key presses</Caption><br /><input type="number" min="1" max="10000" value={config.maxKeyPresses} /></div>
+      <div><Caption>Mouse clicks</Caption><br /><input type="number" min="1" max="10000" value={config.maxMousePresses} /></div>
       <h2> - Maximum values per submitted evidence</h2>
       <div>
         <button onClick={reset}>Reset Defaults</button>

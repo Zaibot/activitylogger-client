@@ -1,3 +1,4 @@
+import { Caption } from '@zaibot/activitylogger-react';
 import React from 'react';
 import { PureConnect } from 'react-redux-pure';
 import * as actions from '../actions';
@@ -14,8 +15,8 @@ export default PureConnect(`PageAuth`)(
   }),
   ({ config: { publicKey, privateKey }, onExport, onGenerate }) => (
     <div>
-      <div><label>Public Key:</label><br /><textarea value={publicKey} cols={80} rows={8} style={{ fontSize: 12 }} /></div>
-      <div><label>Private Key:</label><br /><button onClick={() => onExport(privateKey, publicKey)}>Export</button></div>
+      <div><Caption>Public Key</Caption><br /><textarea value={publicKey} cols={80} rows={8} style={{ fontSize: 12 }} /></div>
+      <div><Caption>Private Key</Caption><br /><button onClick={() => onExport(privateKey, publicKey)}>Export</button></div>
       <div>
         <button onClick={onGenerate}>Generate new keypair</button>
       </div>

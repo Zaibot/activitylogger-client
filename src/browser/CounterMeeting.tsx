@@ -1,6 +1,6 @@
+import { Icon, Label } from '@zaibot/activitylogger-react';
 import React from 'react';
 import { PureConnect } from 'react-redux-pure';
-import Icon from '../icon';
 import selectors from '../store/selectors';
 import State from '../store/state';
 
@@ -10,5 +10,7 @@ export default PureConnect(`CounterMeeting`)(
   }),
   null,
   ({ meetings }) => (
-    <div><Icon value={`people`} /> {meetings} meeting(s)</div>
+    <div>
+      <Label><Icon iconSize={`24px` as any}>people</Icon> {meetings} meeting(s)</Label>
+    </div>
   ));
