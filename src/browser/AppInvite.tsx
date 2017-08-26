@@ -1,4 +1,4 @@
-import { Caption, Label, Screen, Title, TitleSub } from '@zaibot/activitylogger-react';
+import { Caption, Label, Screen, Title, TitleSub, Button } from '@zaibot/activitylogger-react';
 import React from 'react';
 import { PureConnect } from 'react-redux-pure';
 import * as actions from '../actions';
@@ -34,6 +34,6 @@ export default PureConnect(`AppInvite`)(
       </div>
       <div><Caption>New Timeline ID</Caption><br /><input type="text" size={40} value={timelineId} /></div>
       <div><Caption>Their Public Key</Caption><br /><textarea cols={40} rows={6} value={publicKey} onChange={(e) => onPublicKeyChanged(e.target.value)} style={{ fontSize: 12 }} /></div>
-      <div><button onClick={() => onCommit(timelineId, publicKey)}>Register timeline</button> <button onClick={onCancel}>Cancel</button></div>
+      <div><Button primary onClick={() => onCommit(timelineId, publicKey)}>Register timeline</Button> <Button secondary onClick={onCancel}>Cancel</Button></div>
     </Screen>
   ));

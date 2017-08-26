@@ -22,7 +22,7 @@
   "author": "Zaibot Programs",
   "license": "ISC",
   "dependencies": {
-    "@zaibot/activitylogger-react": "^0.1.4",
+    "@zaibot/activitylogger-react": "^0.1.6",
     "@zaibot/ll-keyboard-hook-win": "^4.0.1",
     "@zaibot/ll-mouse-hook-win": "^4.0.1",
     "active-win": "^2.0.0",

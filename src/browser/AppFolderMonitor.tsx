@@ -1,4 +1,4 @@
-import { Caption, Screen, Title } from '@zaibot/activitylogger-react';
+import { Caption, Screen, Title, Button } from '@zaibot/activitylogger-react';
 import React from 'react';
 import { PureConnect } from 'react-redux-pure';
 import * as actions from '../actions';
@@ -18,8 +18,8 @@ export default PureConnect(`AppFolderMonitor`)(
   ({ folder: { folder }, onBrowse, onFolderChanged, onCancel, onCommit }) => (
     <Screen>
       <Title>Add folder to monitor</Title>
-      <div><Caption>Folder</Caption><br /><input type="text" size={40} value={folder} onChange={(e) => onFolderChanged(e.target.value)} /> <button onClick={onBrowse}>Browse</button></div>
+      <div><Caption>Folder</Caption><br /><input type="text" size={40} value={folder} onChange={(e) => onFolderChanged(e.target.value)} /> <Button onClick={onBrowse}>Browse</Button></div>
       <div><Caption>Processors</Caption><br /><ul><li>GIT repository</li></ul></div>
-      <div><button onClick={() => onCommit(folder)}>Start monitoring</button> <button onClick={onCancel}>Cancel</button></div>
+      <div><Button primary onClick={() => onCommit(folder)}>Start monitoring</Button> <Button secondary onClick={onCancel}>Cancel</Button></div>
     </Screen>
   ));

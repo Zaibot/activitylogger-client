@@ -1,3 +1,4 @@
+import { Button } from '@zaibot/activitylogger-react';
 import React from 'react';
 
 import { PureConnect } from 'react-redux-pure';
@@ -11,5 +12,5 @@ export default PureConnect<{ item: Task }>(`PageBuffer`)(
     onCancel: () => dispatch(actions.BUFFER_CANCEL({ id: props.item.id, time: Date.now() })),
   }),
   ({ item, onCancel }) => (
-    item.status === Status.Error ? <button onClick={onCancel}>remove</button> : null
+    item.status === Status.Error ? <Button secondary onClick={onCancel}>remove</Button> : null
   ));

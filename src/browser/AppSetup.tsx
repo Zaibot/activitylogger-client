@@ -1,4 +1,4 @@
-import { Screen, Title, TitleSub } from '@zaibot/activitylogger-react';
+import { Screen, Title, TitleSub, Button } from '@zaibot/activitylogger-react';
 import React from 'react';
 import { PureConnect } from 'react-redux-pure';
 import * as actions from '../actions';
@@ -22,14 +22,14 @@ export default PureConnect(`AppSetup`)(
         By default you'll be connected to al.zaibot.net, but you may setup your own (<WebLink href={`https://activitylogger.github.io/wiki/private-server`}>show me how</WebLink>).
       </p>
       <div>
-        <button onClick={reset}>OK, no problem</button> <button onClick={reset}>I would like a private server</button>
+        <Button primary onClick={reset}>OK, no problem</Button> <Button onClick={reset}>I would like a private server</Button>
       </div>
       <TitleSub>Security</TitleSub>
       <p>
         Information on the server is only accessable to you, for this a keypair is needed by the client.
       </p>
       <div>
-        <button onClick={reset}>Create on for me</button> <button onClick={reset}>Import my own</button>
+        <Button primary onClick={reset}>Create on for me</Button> <Button onClick={reset}>Import my own</Button>
       </div>
       <TitleSub>Monitoring</TitleSub>
       <p>
@@ -37,7 +37,7 @@ export default PureConnect(`AppSetup`)(
         Only GIT folders are supported at the moment.
       </p>
       <div>
-        <button onClick={reset}>Add folders</button> <button onClick={reset}>No, thanks</button>
+        <Button primary onClick={reset}>Add folders</Button> <Button onClick={reset}>No, thanks</Button>
       </div>
       <TitleSub>Ready to go!</TitleSub>
       <p>
@@ -45,7 +45,7 @@ export default PureConnect(`AppSetup`)(
         The configuration can be changed at anytime by accessing the gear icon in the top right.
       </p>
       <div>
-        <button onClick={reset}>Thank you</button> <button onClick={reset}>Wait with recording</button>
+        <Button primary onClick={reset}>Thank you</Button> <Button onClick={reset}>Wait with recording</Button>
       </div>
     </Screen>
   ));

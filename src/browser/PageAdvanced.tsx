@@ -1,4 +1,4 @@
-import { Caption, Label } from '@zaibot/activitylogger-react';
+import { Button, Caption, Label } from '@zaibot/activitylogger-react';
 import React from 'react';
 import { PureConnect } from 'react-redux-pure';
 import * as actions from '../actions';
@@ -21,7 +21,7 @@ export default PureConnect(`PageAdvanced`)(
       <div><Caption>Mouse clicks</Caption><br /><input type="number" min="1" max="10000" value={config.maxMousePresses} /></div>
       <h2> - Maximum values per submitted evidence</h2>
       <div>
-        <button onClick={reset}>Reset Defaults</button>
+        <Button secondary onClick={reset}>Reset Defaults</Button>
       </div>
     </div>
   ));

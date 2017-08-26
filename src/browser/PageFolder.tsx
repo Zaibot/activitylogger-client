@@ -1,4 +1,4 @@
-import { Label, Reference } from '@zaibot/activitylogger-react';
+import { Label, Reference, Button } from '@zaibot/activitylogger-react';
 import React from 'react';
 import { PureConnect } from 'react-redux-pure';
 import * as actions from '../actions';
@@ -22,6 +22,6 @@ export default PureConnect(`PageFolder`)(
         {folders.map(({ path }) => <li><Label>{path}</Label> <Reference>GIT</Reference></li>)}
         {folders.length ? null : <li>No folders specified</li>}
       </ul>
-      <button onClick={onAddFolder}>Add</button>
+      <Button primary onClick={onAddFolder}>Add</Button>
     </div>
   ));

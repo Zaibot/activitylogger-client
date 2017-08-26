@@ -1,4 +1,4 @@
-import { Icon, Screen } from '@zaibot/activitylogger-react';
+import { Icon, Screen, Button } from '@zaibot/activitylogger-react';
 import React from 'react';
 import { PureConnect } from 'react-redux-pure';
 import uuid from 'uuid';
@@ -57,7 +57,7 @@ export default PureConnect(`AppDashboard`)(
         <CounterWindow />
         <CounterSessionTime />
         <CounterIdleTime />
-        <button onClick={onInvite}>Invite another user</button>
+        <Button onClick={onInvite}>Invite another user</Button>
       </View>
       <View name={`Meeting`}>
         <PageMeeting />

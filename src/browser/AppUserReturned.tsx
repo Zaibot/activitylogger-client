@@ -1,4 +1,4 @@
-import { Caption, Label, Screen, Title } from '@zaibot/activitylogger-react';
+import { Caption, Label, Screen, Title, Button } from '@zaibot/activitylogger-react';
 import React from 'react';
 import { PureConnect } from 'react-redux-pure';
 import * as actions from '../actions';
@@ -24,6 +24,6 @@ export default PureConnect(`AppUserReturned`)(
       <div><Caption>You were away for</Caption><br /><Label><Duration duration={timeEnd - timeStart} /> since {formatter.format(timeStart)}</Label></div>
       <div><Caption>Title</Caption><br /><input type="text" size={40} value={title} onChange={(e) => onTitleChanged(e.target.value)} /></div>
       <div><Caption>Description</Caption><br /><textarea cols={40} rows={10} value={description} onChange={(e) => onDescriptionChanged(e.target.value)} /></div>
-      <div><button onClick={() => onCommit(timeStart, timeEnd, title, description)}>Log this as meeting</button> <button onClick={onSkip}>Skip</button></div>
+      <div><Button primary onClick={() => onCommit(timeStart, timeEnd, title, description)}>Log this as meeting</Button> <Button secondary onClick={onSkip}>Skip</Button></div>
     </Screen>
   ));

@@ -1,4 +1,4 @@
-import { Caption, Label } from '@zaibot/activitylogger-react';
+import { Caption, Label, Button } from '@zaibot/activitylogger-react';
 import React from 'react';
 import { PureConnect } from 'react-redux-pure';
 import * as actions from '../actions';
@@ -22,10 +22,10 @@ export default PureConnect(`PageConfig`)(
   }),
   ({ statusConnection, serverUrl, sourceId, timelineId, onResetServer, onChangeServerUrl, onChangeSource, onChangeTimeline, onGenerateTimeline, onGenerateSource }) => (
     <div>
-      <div><Caption>Server URL</Caption><br /><input type="text" value={serverUrl} onChange={(e) => onChangeServerUrl(e.target.value)} /> <button onClick={onResetServer}>Default</button></div>
+      <div><Caption>Server URL</Caption><br /><input type="text" value={serverUrl} onChange={(e) => onChangeServerUrl(e.target.value)} /> <Button secondary onClick={onResetServer}>Default</Button></div>
       <div><Label>{statusConnection}</Label></div>
-      <div><Caption>Timeline ID</Caption><br /><input type="text" value={timelineId} onChange={(e) => onChangeTimeline(e.target.value)} /> <button onClick={onGenerateTimeline}>Generate</button></div>
-      <div><Caption>Source ID</Caption><br /><input type="text" value={sourceId} onChange={(e) => onChangeSource(e.target.value)} /> <button onClick={onGenerateSource}>Machine Name</button></div>
+      <div><Caption>Timeline ID</Caption><br /><input type="text" value={timelineId} onChange={(e) => onChangeTimeline(e.target.value)} /> <Button secondary onClick={onGenerateTimeline}>Generate</Button></div>
+      <div><Caption>Source ID</Caption><br /><input type="text" value={sourceId} onChange={(e) => onChangeSource(e.target.value)} /> <Button secondary onClick={onGenerateSource}>Machine Name</Button></div>
       <div>
         <Caption>Track</Caption>
         <div><Label><input type="checkbox" checked /> Interactions</Label></div>
