@@ -1,5 +1,5 @@
-import Electron from 'electron';
-import notifier from 'node-notifier';
+import * as Electron from 'electron';
+import * as notifier from 'node-notifier';
 import { Store } from 'redux';
 import * as saga from 'redux-saga';
 import * as actions from '../actions';

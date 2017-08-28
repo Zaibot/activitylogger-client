@@ -1,5 +1,5 @@
-import { Caption, Label, Button } from '@zaibot/activitylogger-react';
-import React from 'react';
+import { Button, Caption, Label } from '@zaibot/activitylogger-react';
+import * as React from 'react';
 import { PureConnect } from 'react-redux-pure';
 import * as actions from '../actions';
 import selectors from '../store/selectors';
@@ -7,18 +7,18 @@ import State from '../store/state';
 
 export default PureConnect(`PageConfig`)(
   (state: State) => ({
-    statusConnection: selectors.statusConnection(state),
     serverUrl: selectors.config(state).serverUrl,
     sourceId: selectors.config(state).sourceId,
+    statusConnection: selectors.statusConnection(state),
     timelineId: selectors.config(state).timelineId,
   }),
   (dispatch) => ({
     onChangeServerUrl: (value: string) => dispatch(actions.CHANGED_SERVER({ value })),
     onChangeSource: (value: string) => dispatch(actions.CHANGED_SOURCE({ value })),
     onChangeTimeline: (value: string) => dispatch(actions.CHANGED_TIMELINE({ value })),
-    onResetServer: () => dispatch(actions.RESET_SERVER({})),
-    onGenerateTimeline: () => dispatch(actions.GENERATE_TIMELINE({})),
     onGenerateSource: () => dispatch(actions.GENERATE_SOURCE({})),
+    onGenerateTimeline: () => dispatch(actions.GENERATE_TIMELINE({})),
+    onResetServer: () => dispatch(actions.RESET_SERVER({})),
   }),
   ({ statusConnection, serverUrl, sourceId, timelineId, onResetServer, onChangeServerUrl, onChangeSource, onChangeTimeline, onGenerateTimeline, onGenerateSource }) => (
     <div>

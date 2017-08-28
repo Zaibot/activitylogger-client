@@ -1,5 +1,5 @@
-import keyboard from '@zaibot/ll-keyboard-hook-win';
-import mouse from '@zaibot/ll-mouse-hook-win';
+import * as keyboard from '@zaibot/ll-keyboard-hook-win';
+import * as mouse from '@zaibot/ll-mouse-hook-win';
 import { Store } from 'redux';
 import * as actions from '../actions';
 import State from '../store/state';

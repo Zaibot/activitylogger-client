@@ -1,5 +1,5 @@
 import { Button } from '@zaibot/activitylogger-react';
-import React from 'react';
+import * as React from 'react';
 
 import { PureConnect } from 'react-redux-pure';
 import * as actions from '../actions';

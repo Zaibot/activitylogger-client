@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { PureConnect } from 'react-redux-pure';
 import * as actions from '../actions';
 import selectors from '../store/selectors';

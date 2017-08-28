@@ -1,13 +1,13 @@
 import { delay, takeEvery } from 'redux-saga';
 import * as saga from 'redux-saga/effects';
-import uuid from 'uuid';
+import * as uuid from 'uuid';
 import * as actions from '../actions';
 import { Action, isType } from '../actions';
 import selectors from '../store/selectors';
 import Database, { IBufferItem } from './database';
 import { Meeting } from './Meeting';
 
-export default function*() {
+export default function* () {
   yield saga.call(reloadBufferItem);
   yield takeEvery([actions.INTERVAL_TICK.type, actions.KEY_PRESSED.type, actions.MOUSE_PRESSED.type, actions.TRIGGERED_WINDOW.type, actions.TRIGGERED_FOLDER.type], checkRecording);
   yield takeEvery([actions.CHANGED_TIMELINE.type], timelineCreate);
@@ -37,7 +37,7 @@ function* persistBufferItem(action: Action<any>) {
 }
 
 function* cleanup() {
-  for (; ; ) {
+  for (; ;) {
     const time = yield saga.take(actions.INTERVAL_TICK.type);
     if (isType(actions.INTERVAL_TICK, time)) {
       yield saga.put(actions.CLEAN_BUFFER({ currentTime: time.payload.time }));

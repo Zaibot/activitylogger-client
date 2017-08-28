@@ -1,5 +1,5 @@
-import { Caption, Screen, Title, Button } from '@zaibot/activitylogger-react';
-import React from 'react';
+import { Button, Caption, Screen, Title } from '@zaibot/activitylogger-react';
+import * as React from 'react';
 import { PureConnect } from 'react-redux-pure';
 import * as actions from '../actions';
 import selectors from '../store/selectors';
@@ -11,9 +11,9 @@ export default PureConnect(`AppFolderMonitor`)(
   }),
   (dispatch) => ({
     onBrowse: () => dispatch(actions.MONITORFOLDER_BROWSE({})),
-    onFolderChanged: (value: string) => dispatch(actions.MONITORFOLDER_CHANGED_FOLDER({ value })),
     onCancel: () => dispatch(actions.MONITORFOLDER_CANCEL({})),
     onCommit: (folder: string) => dispatch(actions.MONITORFOLDER_COMMIT({ folder })),
+    onFolderChanged: (value: string) => dispatch(actions.MONITORFOLDER_CHANGED_FOLDER({ value })),
   }),
   ({ folder: { folder }, onBrowse, onFolderChanged, onCancel, onCommit }) => (
     <Screen>

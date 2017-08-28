@@ -1,13 +1,13 @@
 import { Icon, Label, Reference } from '@zaibot/activitylogger-react';
-import React from 'react';
+import * as React from 'react';
 import { PureConnect } from 'react-redux-pure';
 import selectors from '../store/selectors';
 import State from '../store/state';
 
 export default PureConnect(`CounterFolder`)(
   (state: State) => ({
-    folders: selectors.stats(state).folders.length,
     folderLast: selectors.folderLast(state),
+    folders: selectors.stats(state).folders.length,
   }),
   null,
   ({ folders, folderLast }) => (

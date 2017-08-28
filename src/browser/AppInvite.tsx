@@ -1,5 +1,5 @@
-import { Caption, Label, Screen, Title, TitleSub, Button } from '@zaibot/activitylogger-react';
-import React from 'react';
+import { Button, Caption, Label, Screen, Title, TitleSub } from '@zaibot/activitylogger-react';
+import * as React from 'react';
 import { PureConnect } from 'react-redux-pure';
 import * as actions from '../actions';
 import Icon from '../icon';
@@ -13,9 +13,9 @@ export default PureConnect(`AppInvite`)(
     invite: selectors.invite(state),
   }),
   (dispatch) => ({
-    onPublicKeyChanged: (value: string) => dispatch(actions.INVITE_CHANGED_PUBLICKEY({ value })),
     onCancel: () => dispatch(actions.INVITE_CANCEL({})),
     onCommit: (timelineId: string, publicKey: string) => dispatch(actions.INVITE_COMMIT({ timelineId, publicKey })),
+    onPublicKeyChanged: (value: string) => dispatch(actions.INVITE_CHANGED_PUBLICKEY({ value })),
   }),
   ({ invite: { timelineId, publicKey }, onPublicKeyChanged, onCancel, onCommit }) => (
     <Screen>

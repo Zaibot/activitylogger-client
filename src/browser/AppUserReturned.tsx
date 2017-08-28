@@ -1,5 +1,5 @@
-import { Caption, Label, Screen, Title, Button } from '@zaibot/activitylogger-react';
-import React from 'react';
+import { Button, Caption, Label, Screen, Title } from '@zaibot/activitylogger-react';
+import * as React from 'react';
 import { PureConnect } from 'react-redux-pure';
 import * as actions from '../actions';
 import selectors from '../store/selectors';
@@ -13,10 +13,10 @@ export default PureConnect(`AppUserReturned`)(
     userReturned: selectors.userReturned(state),
   }),
   (dispatch) => ({
-    onTitleChanged: (value: string) => dispatch(actions.USERRETURNED_TITLE_CHANGED({ value })),
+    onCommit: (timeStart: number, timeEnd: number, title: string, description: string) => dispatch(actions.USERRETURNED_COMMIT({ timeStart, timeEnd, title, description })),
     onDescriptionChanged: (value: string) => dispatch(actions.USERRETURNED_DESCRIPTION_CHANGED({ value })),
     onSkip: () => dispatch(actions.USERRETURNED_SKIP({})),
-    onCommit: (timeStart: number, timeEnd: number, title: string, description: string) => dispatch(actions.USERRETURNED_COMMIT({ timeStart, timeEnd, title, description })),
+    onTitleChanged: (value: string) => dispatch(actions.USERRETURNED_TITLE_CHANGED({ value })),
   }),
   ({ userReturned: { title, description, timeStart, timeEnd }, onTitleChanged, onDescriptionChanged, onSkip, onCommit }) => (
     <Screen>

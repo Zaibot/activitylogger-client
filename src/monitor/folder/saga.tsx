@@ -1,5 +1,5 @@
-import fs from 'fs';
-import path from 'path';
+import * as fs from 'fs';
+import * as path from 'path';
 import { eventChannel, Task } from 'redux-saga';
 import * as saga from 'redux-saga/effects';
 import * as actions from '../../actions';
@@ -13,13 +13,13 @@ export interface IActiveWindow {
   title: string;
 }
 
-export default function*() {
+export default function* () {
   yield safe.catchForkForever(monitorFolders);
 }
 
 function* monitorFolders() {
   let tasks: Task[] = [];
-  for (; ; ) {
+  for (; ;) {
     const { folders } = yield saga.select(selectors.folder);
     if (tasks.length) {
       yield saga.cancel(...tasks);
@@ -37,7 +37,7 @@ function* monitorFolder(path: string) {
   console.log(`[Monitor.Folder] ${path}`);
   const processorGit = new Git();
   const watcher = yield saga.call(fsWatchChannel, path);
-  for (; ; ) {
+  for (; ;) {
     const next = yield saga.take(watcher);
     const path = yield processorGit.resolve(next.path);
     if (path) {

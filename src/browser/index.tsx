@@ -1,12 +1,13 @@
 import '@zaibot/css-reset/reset.less';
 
 import { Background } from '@zaibot/activitylogger-react';
-import React from 'react';
-import ReactDOM from 'react-dom';
+import * as React from 'react';
+import * as ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { PureConnect } from 'react-redux-pure';
 import Styletron from 'styletron-client';
 import { StyletronProvider } from 'styletron-react';
+import { Auth } from '../Auth';
 import configureStore from '../store/configureStoreBrowser';
 import selectors from '../store/selectors';
 import State from '../store/state';
@@ -18,9 +19,9 @@ import cx from './style.less';
 
 const App = PureConnect(`App`)(
   (state: State) => ({
-    hasPendingUserReturned: selectors.hasPendingUserReturned(state),
-    hasPendingInvite: selectors.hasPendingInvite(state),
     hasPendingFolder: selectors.hasPendingFolder(state),
+    hasPendingInvite: selectors.hasPendingInvite(state),
+    hasPendingUserReturned: selectors.hasPendingUserReturned(state),
   }),
   (dispatch) => ({
   }),

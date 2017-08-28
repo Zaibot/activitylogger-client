@@ -1,5 +1,5 @@
-import { Label, Reference, Button } from '@zaibot/activitylogger-react';
-import React from 'react';
+import { Button, Label, Reference } from '@zaibot/activitylogger-react';
+import * as React from 'react';
 import { PureConnect } from 'react-redux-pure';
 import * as actions from '../actions';
 import selectors from '../store/selectors';
@@ -7,11 +7,11 @@ import State from '../store/state';
 
 export default PureConnect(`PageFolder`)(
   (state: State) => ({
-    statusConnection: selectors.statusConnection(state),
+    folders: selectors.folder(state).folders,
     serverUrl: selectors.config(state).serverUrl,
     sourceId: selectors.config(state).sourceId,
+    statusConnection: selectors.statusConnection(state),
     timelineId: selectors.config(state).timelineId,
-    folders: selectors.folder(state).folders,
   }),
   (dispatch) => ({
     onAddFolder: () => dispatch(actions.MONITORFOLDER_INIT({})),

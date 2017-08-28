@@ -1,12 +1,12 @@
 import { dialog } from 'electron';
 import { takeEvery } from 'redux-saga';
 import * as saga from 'redux-saga/effects';
-import uuid from 'uuid';
+import * as uuid from 'uuid';
 import { Action, isType } from '../actions';
 import * as actions from '../actions';
 import Database, { IFolderItem } from './database';
 
-export default function*() {
+export default function* () {
   yield saga.call(loadFolders);
   yield takeEvery([actions.MONITORFOLDER_INIT.type, actions.MONITORFOLDER_BROWSE.type], selectFolder);
   yield takeEvery([actions.MONITORFOLDER_COMMIT.type], persistFolder);

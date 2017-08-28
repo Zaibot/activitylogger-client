@@ -1,6 +1,6 @@
 import fs from 'async-file';
 import memoryCache from 'node-memory-cache';
-import path from 'path';
+import * as path from 'path';
 
 const timeCacheGitFolder = 30000;
 

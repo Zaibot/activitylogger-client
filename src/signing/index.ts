@@ -1,4 +1,4 @@
-import crypto from 'crypto';
+import * as crypto from 'crypto';
 
 export class Signing {
   public sign(privateKey: string, buffer: Buffer): string {

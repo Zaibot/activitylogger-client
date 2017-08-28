@@ -1,5 +1,5 @@
 import { Icon } from '@zaibot/activitylogger-react';
-import React from 'react';
+import * as React from 'react';
 
 import { PureConnect } from 'react-redux-pure';
 import { Folder, Interaction, Meeting, Status, TimelineCreate, Window } from '../buffer';

@@ -1,6 +1,6 @@
 import { app } from 'electron';
-import Datastore from 'nedb';
-import path from 'path';
+import * as Datastore from 'nedb';
+import * as path from 'path';
 
 const intervalCompaction = 60000 * 15;
 
@@ -16,9 +16,9 @@ export class DB {
 
   public constructor() {
     this._database = new Datastore({
+      autoload: true,
       corruptAlertThreshold: 1,
       filename: path.join(app.getPath('userData'), 'buffer.db'),
-      autoload: true,
     });
     this._database.persistence.setAutocompactionInterval(intervalCompaction);
   }

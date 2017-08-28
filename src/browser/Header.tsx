@@ -1,5 +1,5 @@
 import { Title } from '@zaibot/activitylogger-react';
-import React from 'react';
+import * as React from 'react';
 import { PureConnect } from 'react-redux-pure';
 import selectors from '../store/selectors';
 import WebLink from '../WebLink';
@@ -8,8 +8,8 @@ import cx from './style.less';
 export default PureConnect(`Header`)(
   (state) => ({
     busy: selectors.client(state).busy,
-    online: selectors.client(state).online,
     offline: !selectors.client(state).online,
+    online: selectors.client(state).online,
   }),
   () => ({
   }),
