@@ -2,7 +2,7 @@
   "compilerOptions": {
     "target": "esnext",
     "module": "es6",
-    "jsx": "react",
+    "jsx": "preserve",
     "moduleResolution": "node",
     "isolatedModules": false,
     "experimentalDecorators": true,
