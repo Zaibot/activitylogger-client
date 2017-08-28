@@ -15,6 +15,7 @@ import Dashboard from './AppDashboard';
 import FolderMonitor from './AppFolderMonitor';
 import Invite from './AppInvite';
 import UserReturned from './AppUserReturned';
+import { onDocumentContentLoaded } from './onDocumentContentLoaded';
 import cx from './style.less';
 
 const App = PureConnect(`App`)(
@@ -31,15 +32,32 @@ const App = PureConnect(`App`)(
     </div>
   ));
 
-const store = configureStore();
-ReactDOM.render((
-  <Provider store={store}>
-    <StyletronProvider styletron={new Styletron()}>
-      <Background>
-        <App />
-      </Background>
-    </StyletronProvider>
-  </Provider>
-), document.querySelector('app'), (el) => {
+function delay(timeout: number) {
+  return new Promise((resolve) => {
+    setTimeout(() => resolve(), timeout);
+  });
+}
+
+async function launch() {
+  const store = configureStore();
+  await delay(500);
+  await onDocumentContentLoaded();
+  await renderApp((
+    <Provider store={store}>
+      <StyletronProvider styletron={new Styletron()}>
+        <Background>
+          <App />
+        </Background>
+      </StyletronProvider>
+    </Provider >
+  ));
   document.documentElement.removeAttribute('class');
-});
+}
+
+function renderApp(content: JSX.Element) {
+  return new Promise((resolve) => {
+    ReactDOM.render(content, document.querySelector('app'), () => resolve());
+  });
+}
+
+launch();
