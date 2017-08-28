@@ -6,13 +6,34 @@ const BabiliPlugin = require(`babili-webpack-plugin`);
 const prodFn = (yes) => process.env.NODE_ENV === 'production' ? yes : function () { };
 const prodIf = (yes, no) => process.env.NODE_ENV === 'production' ? yes : no;
 
+const babelOptions = {
+  "babelrc": false,
+  "presets": [
+    ["es2015", { modules: false }],
+    "stage-0"
+  ],
+  "plugins": [
+    "transform-runtime"
+  ]
+};
+const babelModulesOptions = {
+  "babelrc": false,
+  "presets": [
+    "es2015",
+    "stage-0"
+  ],
+  "plugins": [
+    "add-module-exports",
+    "transform-runtime",
+  ]
+};
+
 module.exports = {
   devtool: "source-map",
   cache: true,
   context: path.join(__dirname, `src`),
   entry: {
     'app': [`long`, `./launch`],
-    'browser': [`long`, `./browser`],
   },
   output: {
     publicPath: './dist/',
@@ -27,42 +48,24 @@ module.exports = {
   module: {
     loaders: [{
       test: /\.tsx?$/,
-      loader: 'ts-loader'
+      include: path.join(__dirname, `src`),
+      loaders: [{ loader: 'babel-loader', options: babelOptions }, 'ts-loader'],
     }, {
-      test: /\.(png|woff|woff2|eot|ttf|svg)$/,
-      loader: 'url-loader?limit=1000000'
-    },
-    {
-      test: /\.less$/,
-      loaders: ['classnames-loader', 'style-loader', {
-        loader: 'css-loader',
-        options: {
-          module: 1,
-          importLoaders: 1
-        }
-      }, 'less-loader']
-    },
-    ]
+      test: /\.jsx?$/,
+      include: path.join(__dirname, `node_modules`),
+      loaders: [{ loader: 'babel-loader', options: babelModulesOptions }],
+    }]
   },
   externals: [
-    NodeExternals({
-      whitelist: [
-        /@zaibot\/css-reset/
-      ]
-    }),
+    NodeExternals(),
   ],
   plugins: [
-    prodFn(new webpack.DefinePlugin({
+    new webpack.DefinePlugin({
       'process.env': {
-        'NODE_ENV': `'production'`
+        'NODE_ENV': prodIf(`'production'`, `'development'`)
       }
     }),
-      prodFn(new BabiliPlugin()),
-      new webpack.DefinePlugin({
-        'process.env': {
-          'NODE_ENV': `'development'`
-        }
-      })),
+    prodFn(new BabiliPlugin()),
   ],
   resolve: {
     extensions: [`.tsx`, `.ts`, `.js`]

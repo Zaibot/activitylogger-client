@@ -39,4 +39,6 @@ ReactDOM.render((
       </Background>
     </StyletronProvider>
   </Provider>
-), document.querySelector('app'));
+), document.querySelector('app'), (el) => {
+  document.documentElement.removeAttribute('class');
+});

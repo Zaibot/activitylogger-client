@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html>
+<html class="loading">
+
 <head>
   <meta charset="UTF-8">
   <title>Activity Logger</title>
@@ -15,12 +16,33 @@
       user-select: none;
       cursor: default;
     }
+
+    html.loading {
+      min-height: 100%;
+      background: linear-gradient(180deg, #f0f0f0 25%, #ffffff 25%, #ffffff 75%, #f0f0f0 75%)!important;
+      background-size: 100% 300%!important;
+      animation: AnimationName 3s ease infinite;
+    }
+
+    @keyframes AnimationName {
+      0% {
+        background-position: 50% 0%
+      }
+      50% {
+        background-position: 50% 100%
+      }
+      100% {
+        background-position: 50% 0%
+      }
+    }
   </style>
+  <script>
+    require('../dist/browser.js');
+  </script>
 </head>
+
 <body>
   <app></app>
 </body>
-<script>
-  require('../dist/browser.js')
-</script>
+
 </html>
