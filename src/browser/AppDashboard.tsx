@@ -1,9 +1,9 @@
-import { Icon, Screen, Button } from '@zaibot/activitylogger-react';
-import React from 'react';
+import { Button, Icon, Screen } from '@zaibot/activitylogger-react';
+import * as React from 'react';
 import { PureConnect } from 'react-redux-pure';
-import uuid from 'uuid';
 
 import * as actions from '../actions';
+import { Auth } from '../Auth';
 import { Status } from '../buffer';
 import selectors from '../store/selectors';
 import State from '../store/state';
@@ -28,14 +28,17 @@ import PageMeeting from './PageMeeting';
 
 export default PureConnect(`AppDashboard`)(
   (state: State) => ({
-    pendingBuffer: state.buffer.tasks.some((x) => x.status !== Status.Sent),
     offline: selectors.isDisconnected(state),
+    pendingBuffer: state.buffer.tasks.some((x) => x.status !== Status.Sent),
     windowTitleLast: selectors.windowTitleLast(state),
   }),
   (dispatch) => ({
-    onInvite: () => dispatch(actions.INVITE_INIT({ timelineId: uuid.v4() })),
+    onInvite: () => dispatch(actions.INVITE_INIT({ timelineId: require('uuid').v4() })),
+    test() {
+      Auth.login();
+    },
   }),
-  ({ offline, pendingBuffer, windowTitleLast, onInvite }) => (
+  ({ offline, pendingBuffer, windowTitleLast, onInvite, test }) => (
     <Screen>
       <Header />
       <ViewSelector items={[
@@ -58,6 +61,7 @@ export default PureConnect(`AppDashboard`)(
         <CounterSessionTime />
         <CounterIdleTime />
         <Button onClick={onInvite}>Invite another user</Button>
+        <Button onClick={test}>Login</Button>
       </View>
       <View name={`Meeting`}>
         <PageMeeting />
